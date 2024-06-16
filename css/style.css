@@ -17,7 +17,7 @@ header {
 nav {
     position: relative;
     display: flex;
-    padding: 1.5% 20%;
+    padding: 1.2% 20%;
     justify-content: space-between;
     align-items: center;
     z-index: 1;
@@ -49,6 +49,44 @@ nav {
     text-transform: uppercase;
 }
 
-.navLinks ul li a:hover{
+.navLinks ul li a:hover {
     color: #4f4f4f;
+}
+
+nav .uil {
+    display: none;
+}
+
+@media (max-width: 800px) {
+    nav{
+        padding: 1% 5%;
+    }
+
+    .navLinks ul li {
+        display: block;
+    }
+
+    .navLinks {
+        position: fixed;
+        background: #ededed;
+        height: 100vh;
+        width: 200px;
+        top: 0;
+        right: -200px;
+        text-align: left;
+        z-index: 2;
+        transition: 0.8s;
+    }
+
+    nav .uil {
+        display: block;
+        margin: 10px;
+        font-size: 25px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .uil-times-circle {
+        padding-top: 10px;
+    }
 }
