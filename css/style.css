@@ -107,14 +107,12 @@ nav .uil {
     width: 100%;
     height: auto;
     object-fit: contain;
-    z-index: 1;
     background: #ffffff;
 }
 
 .medical_Info {
     padding: 20px;
     text-align: center;
-    z-index: 1;
 }
 
 .medical_Info h3 {
