@@ -108,6 +108,7 @@ nav .uil {
     height: auto;
     object-fit: contain;
     z-index: 1;
+    background: #ffffff;
 }
 
 .medical_Info {
