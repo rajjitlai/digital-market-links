@@ -8,7 +8,6 @@
 }
 
 header {
-    min-height: 100vh;
     width: 100vw;
     background: #fcfcfc;
     position: relative;
@@ -77,10 +76,25 @@ nav .uil {
     background: salmon;
 }
 
+.mainSection{
+    max-width: 80%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5% auto;
+}
+
 .links-Grid{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
+}
+
+.link-Card{
+    max-width: 480px;
+    width: 100%;
+    border: 2px solid black;
+    height: 480px;
 }
 
 @media (max-width: 800px) {
@@ -102,6 +116,7 @@ nav .uil {
         text-align: left;
         z-index: 2;
         transition: 0.8s;
+        padding-left: 20px;
     }
 
     nav .uil {
@@ -121,3 +136,14 @@ nav .uil {
     }
 }
 
+@media screen and (min-width: 700px) {
+    .links-Grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 1024px){
+    .links-Grid{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
