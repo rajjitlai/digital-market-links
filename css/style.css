@@ -81,7 +81,7 @@ nav .uil {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 5% auto;
+    margin: 2.5% auto;
 }
 
 .links-Grid{
@@ -100,10 +100,6 @@ nav .uil {
     max-width: 400px;
     margin: 20px auto;
     transition: transform 0.3s ease-in-out;
-}
-
-.link-Card:hover {
-    transform: scale(1.05);
 }
 
 .link-Card img {
@@ -132,7 +128,26 @@ nav .uil {
     text-align: justify;
 }
 
-/* Responsive Design */
+.cta-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    border: 2px solid salmon;
+    border-radius: 5px;
+    color: salmon;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 20px 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.cta-button:hover{
+    background: salmon;
+    color: #fff;
+}
+
 @media (min-width: 768px) {
     .link-Card {
         flex-direction: row;
