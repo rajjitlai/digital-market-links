@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+:root{
+    --main-color: ;
+    --secondary-color: ;
+    --dark-color: ;
+    --light-color: ;
+    --white-color: ;
+    --black-color: ;
+    --white-tinted-color: ;
+    --black-tinted-color: ;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -8,53 +19,86 @@
     scroll-behavior: smooth;
 }
 
+body {
+    background: #000;
+}
+
 header {
     width: 100%;
-    background: #fcfcfc;
-    position: relative;
-}
-
-nav {
-    position: relative;
+    height: 80px;
+    background: #000;
     display: flex;
-    padding: 1.2% 20%;
-    justify-content: space-between;
     align-items: center;
-    z-index: 1;
-    border-bottom: 2px solid salmon;
+    justify-content: space-between;
+    padding: 0 100px;
+    position: sticky;
 }
 
-.navLinks {
-    flex: 1;
-    text-align: right;
-    gap: 4rem;
+.brand {
+    font-size: 28px;
+    font-weight: 700;
+    color: #fefefe;
 }
 
-.navLinks ul li {
-    list-style: none;
-    display: inline-block;
-    padding: 8px 12px;
-    font-size: 18px;
-    font-weight: 600;
-    text-decoration: none;
-    color: #000;
-    position: relative;
-    cursor: pointer;
-}
-
-.navLinks ul li a {
-    color: #000;
-    text-decoration: none;
-    font-size: 18px;
-    text-transform: uppercase;
-}
-
-.navLinks ul li a:hover {
-    color: #4f4f4f;
-}
-
-nav .uil {
+.customHamburger {
     display: none;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li a {
+    display: block;
+    color: #fefefe;
+    font-size: 20px;
+    padding: 10px 25px;
+    border-radius: 50px;
+    transition: 0.2s;
+    margin: 0 5px;
+    text-decoration: none;
+}
+
+nav ul li a:hover{
+    color: #11101b;
+    background: white;
+}
+
+nav ul li a.active{
+    color: #11101b;
+    background: white;
+
+}
+
+@media only screen and(max-width: 1320px){
+    header{
+        padding: 0 50px;
+    }
+}
+
+@media only screen and(max-width: 1100px){
+    header{
+        padding: 0 30px;
+    }
+}
+
+@media only screen and(max-width: 900px){
+    .customHamburger{
+        display: block;
+        cursor: pointer;
+    }
+
+    .customHamburger .line{
+        width: 30px;
+        height: 3px;
+        background: #fefefe;
+        margin: 6px 0;
+    }
+
+    nav{
+        display: none;
+    }
 }
 
 .hero {
@@ -194,7 +238,8 @@ nav .uil {
 }
 
 .footer {
-    background-color: #f0f4f8;;
+    background-color: #f0f4f8;
+    ;
     color: #000;
     padding: 20px;
     text-align: center;
@@ -238,7 +283,7 @@ nav .uil {
         justify-content: space-between;
         align-items: center;
     }
-    
+
     .footer-nav {
         margin-top: 0;
     }
