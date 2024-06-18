@@ -6,20 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Treat Path</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
 </head>
 
 <body>
     <nav id="home">
         <h2 class="brand">Treat Path</h2>
-        <ul>
-            <li><a href="#home" class="active">Home</a></li>
+        <ul id="menuShow">
             <li><a href="#about">About</a></li>
-            <li><a href="#Contact">Contact</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
         <div class="search">
             <input type="text" name="search" id="search" placeholder="Search...">
             <button type="submit" id="search-btn">Search</button>
         </div>
+        <i class="uil uil-bars not-display" onclick="toggleMenu()" id="iconChange"></i>
     </nav>
 
     <div class="mt-c"></div>
