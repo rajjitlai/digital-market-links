@@ -24,7 +24,7 @@ nav {
     gap: 3rem;
     padding: 15px 10%;
     z-index: 10;
-    background: #fff;
+    background: var(--white-color);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
         0 6px 20px rgba(0, 0, 0, 0.1);
 }
@@ -38,7 +38,7 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
-    color: #000;
+    color: var(--black-color);
     font-size: 20px;
     font-weight: 500;
     transition: color 0.2s;
@@ -72,7 +72,7 @@ nav ul li a:hover {
 
 #search-btn {
     background: var(--main-color);
-    color: #fff;
+    color: var(--white-color);
     padding: 10px 20px;
     border: none;
     cursor: pointer;
@@ -83,8 +83,15 @@ nav ul li a:hover {
     color: #dadada;
 }
 
-.mt-c {
-    margin-top: 8%;
+.hero{
+    margin-top: 5%;
+    width: 100%;
+    height: 200px;
+    padding: 0 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .mainContainer {
@@ -109,7 +116,8 @@ nav ul li a:hover {
     background-color: #f8f9fa;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    max-width: 400px;
+    max-width: 700px;
+    width: 100%;
     margin: 20px auto;
     transition: transform 0.3s ease-in-out;
 }
@@ -118,7 +126,7 @@ nav ul li a:hover {
     width: 100%;
     height: auto;
     object-fit: contain;
-    background: #ffffff;
+    background: var(--white-color);
 }
 
 .medical_Info {
@@ -156,11 +164,11 @@ nav ul li a:hover {
 
 .cta-button:hover {
     background: var(--main-color);
-    color: #fff;
+    color: var(--white-color);
 }
 
-
 .contactSection {
+    margin-top: 2.5%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -168,7 +176,7 @@ nav ul li a:hover {
 }
 
 .contact {
-    background-color: #ffffff;
+    background-color: var(--white-color);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 30px;
@@ -194,24 +202,25 @@ nav ul li a:hover {
 }
 
 .contact a {
-    color: #1e90ff;
+    color: var(--main-color);
     text-decoration: none;
     font-weight: bold;
 }
 
 .contact a:hover {
-    color: #1d7bda;
+    color: var(--main-color-light);
 }
 
 .footer {
     background-color: #f0f4f8;
-    color: #000;
+    color: var(--black-color);
     padding: 20px;
     text-align: center;
     position: relative;
     bottom: 0;
     width: 100%;
     font-weight: 700;
+    margin-top: 2.5%;
 }
 
 .footer-content {
@@ -232,7 +241,7 @@ nav ul li a:hover {
 }
 
 .footer-nav a {
-    color: #000;
+    color: var(--black-color);
     text-decoration: none;
     margin: 0 10px;
     font-size: 16px;
@@ -255,6 +264,7 @@ nav ul li a:hover {
 }
 
 @media (min-width: 768px) {
+
     .link-Card {
         flex-direction: row;
         max-width: 600px;
@@ -272,6 +282,10 @@ nav ul li a:hover {
 }
 
 @media (max-width: 768px) {
+    .hero{
+        margin-top: 15%;
+    }
+
     .contactSection {
         padding: 20px 10px;
     }
@@ -292,7 +306,6 @@ nav ul li a:hover {
         font-size: 14px;
     }
 }
-
 
 @media screen and (min-width: 1024px) {
     .links-Grid {
@@ -331,5 +344,19 @@ nav ul li a:hover {
 
     .showMenu {
         max-height: 60px;
+    }
+}
+
+@media (max-width: 950px) {
+    .hero{
+        margin-top: 18%;
+    }
+
+    .hero h1{
+        font-size: x-large;
+    }
+
+    .hero h2{
+        font-size: larger;
     }
 }
