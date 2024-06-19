@@ -59,6 +59,11 @@ nav ul li a:hover {
     font-size: 30px;
 }
 
+.brand a{
+    color: #000;
+    text-decoration: none;
+}
+
 .search {
     display: flex;
 }
@@ -105,7 +110,7 @@ nav ul li a:hover {
 
 .links-Grid {
     display: grid;
-    gap: 5rem;
+    gap: 3rem;
 }
 
 .link-Card {
@@ -177,7 +182,6 @@ nav ul li a:hover {
 
 .contact {
     background-color: var(--white-color);
-    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 30px;
     max-width: 500px;
@@ -307,7 +311,7 @@ nav ul li a:hover {
     }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1524px) {
     .links-Grid {
         grid-template-columns: repeat(2, 1fr);
     }
