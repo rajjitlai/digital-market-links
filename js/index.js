@@ -54,30 +54,51 @@ const nForm = document.forms['n-submit-to-google-sheet']
 
 const nMsg = document.getElementById('nMsg')
 
-nForm.addEventListener('submit', e => {
-    e.preventDefault()
-    fetch(newsScriptURL, { method: 'POST', body: new FormData(nForm) })
-        .then(response => {
-            nMsg.innerHTML = "Thank you for subscribing to our newsletter!"
-            nMsg.style.color = "#38ff42"
-            setTimeout(function () {
-                nMsg.innerHTML = ""
-            }, 5000)
-
-            nForm.reset()
-        })
-        .catch(error => {
-            nMsg.innerHTML = "You cannot subscribe to newsletter. Please try again later!"
-            nMsg.style.color = "red"
-        })
-})
-
-function openPopup() {
+document.addEventListener('DOMContentLoaded', function () {
+    const clickedLinks = document.querySelectorAll(".dt-go")
     const popup = document.getElementById("popupNews");
-    popup.style.visibility = "visible";
-}
+    let targetUrl = "";
 
-document.getElementById("closePopup").addEventListener("click", function () {
-    const popup = document.getElementById("popupNews");
-    popup.style.visibility = "hidden";
+    clickedLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+            targetUrl = link.getAttribute('data-target');
+
+            if (localStorage.getItem('subscribed') !== "true") {
+                popup.style.visibility = "visible"
+            } else {
+                window.location.href = targetUrl
+            }
+        })
+    })
+
+    document.getElementById('closePopup').addEventListener('click', function () {
+        popup.style.visibility = 'hidden';
+    });
+
+    nForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        fetch(newsScriptURL, { method: 'POST', body: new FormData(nForm) })
+            .then(response => {
+                nMsg.innerHTML = "Thank you for subscribing to our newsletter!";
+                nMsg.style.color = "#38ff42";
+                localStorage.setItem('subscribed', 'true');
+                setTimeout(function () {
+                    nMsg.innerHTML = "";
+                    popup.style.visibility = 'hidden';
+                    window.location.href = targetUrl;
+                }, 5000);
+                nForm.reset();
+            })
+            .catch(error => {
+                nMsg.innerHTML = "You cannot subscribe to newsletter. Please try again later!";
+                nMsg.style.color = "red";
+            });
+    });
+
+    window.addEventListener('click', function (e) {
+        if (e.target == popup) {
+            popup.style.visibility = 'hidden';
+        }
+    });
 });

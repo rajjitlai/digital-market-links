@@ -507,7 +507,7 @@ nav ul li a:hover {
 }
 
 .popup{
-    /* visibility: hidden; */
+    visibility: hidden;
     position: fixed;
     top: 50%;
     left: 50%;
