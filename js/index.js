@@ -71,3 +71,13 @@ nForm.addEventListener('submit', e => {
             nMsg.style.color = "red"
         })
 })
+
+function openPopup() {
+    const popup = document.getElementById("popup");
+    popup.style.visibility = "visible";
+}
+
+document.getElementById("closePopup").addEventListener("click", function () {
+    const popup = document.getElementById("popupNews");
+    popup.style.visibility = "hidden";
+});
