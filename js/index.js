@@ -30,6 +30,7 @@ const form = document.forms['submit-to-google-sheet']
 
 const msg = document.getElementById('msg')
 
+
 form.addEventListener('submit', e => {
     e.preventDefault()
     fetch(scriptURL, { method: 'POST', body: new FormData(form) })
@@ -49,4 +50,24 @@ form.addEventListener('submit', e => {
 
 // newsletters
 const newsScriptURL = "https://script.google.com/macros/s/AKfycbyhcYnCnOi_8aUkGtBPEirXfO6lc2YM1cRMoYovXif6FntxiRLnponCjQkVvKAmgAiZ2A/exec"
+const nForm = document.forms['n-submit-to-google-sheet']
 
+const nMsg = document.getElementById('nMsg')
+
+nForm.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(newsScriptURL, { method: 'POST', body: new FormData(nForm) })
+        .then(response => {
+            nMsg.innerHTML = "Thank you for subscribing to our newsletter!"
+            nMsg.style.color = "#38ff42"
+            setTimeout(function () {
+                nMsg.innerHTML = ""
+            }, 5000)
+
+            nForm.reset()
+        })
+        .catch(error => {
+            nMsg.innerHTML = "You cannot subscribe to newsletter. Please try again later!"
+            nMsg.style.color = "red"
+        })
+})
