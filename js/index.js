@@ -29,3 +29,5 @@ AOS.init({
     easing: 'ease-in-out',
     once: true
 });
+
+// contact and newsletter

@@ -327,16 +327,24 @@
     </section>
 
     <section class="contactSection" id="contact">
-        <div class="contact" data-aos="fade">
-            <h2>Contact Us</h2>
-            <div>
-                <h6>Subscribe to our newsletter</h6>
-                <p class="search">
-                    <!-- <a href="mailto:someone@example.com">demo@gmail.com</a> -->
-                    <input type="email" required id="search" placeholder="Enter your email">
-                    <button type="button" id="search-btn">Subscribe</button>
-                </p>
-            </div>
+        <div class="formContainer">
+            <span class="title">Contact Us</span>
+            <form action="" class="form" name="submit-to-google-sheet">
+                <div class="inputField">
+                    <i class="uil uil-user"></i>
+                    <input type="text" name="Username" placeholder="Enter your name" required>
+                </div>
+                <div class="inputField">
+                    <i class="uil uil-envelope icon"></i>
+                    <input type="email" name="Email" placeholder="Enter your email" required>
+                </div>
+                <div class="inputField">
+                    <i class="uil uil-message icon"></i>
+                    <textarea type="text" name="Message" placeholder="Message us" required></textarea>
+                </div>
+                <input type="submit" value="Submit" id="search-btn" class="conSub">
+            </form>
+            <span id="msg"></span>
         </div>
     </section>
 

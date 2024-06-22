@@ -181,41 +181,6 @@ nav ul li a:hover {
     text-align: center;
 }
 
-.contact {
-    background-color: var(--white-color);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    max-width: 500px;
-    width: 100%;
-}
-
-.contact h2 {
-    font-size: 28px;
-    color: #333333;
-    margin-bottom: 20px;
-}
-
-.contact h6 {
-    font-size: 18px;
-    color: #555555;
-    margin-bottom: 10px;
-}
-
-.contact p {
-    font-size: 16px;
-    color: #777777;
-}
-
-.contact a {
-    color: var(--main-color);
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.contact a:hover {
-    color: var(--main-color-light);
-}
-
 .footer {
     background-color: #f0f4f8;
     color: var(--black-color);
@@ -292,22 +257,6 @@ nav ul li a:hover {
 
     .contactSection {
         padding: 20px 10px;
-    }
-
-    .contact {
-        padding: 20px;
-    }
-
-    .contact h2 {
-        font-size: 24px;
-    }
-
-    .contact h6 {
-        font-size: 16px;
-    }
-
-    .contact p {
-        font-size: 14px;
     }
 }
 
@@ -408,4 +357,84 @@ nav ul li a:hover {
     .ab-S {
         font-size: 0.9em;
     }
+}
+
+/* contact */
+.formContainer {
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 540px;
+    width: 100%;
+    padding: 2% 4%;
+}
+
+.title {
+    position: relative;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #000;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.inputField {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.inputField input,
+.inputField textarea {
+    height: 100%;
+    width: 100%;
+    padding: 0 35px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    border-bottom: 2px solid #555555;
+    border-top: 2px solid transparent;
+}
+
+.inputField textarea{
+    height: 60px;
+    resize: none;
+    overflow: auto;
+}
+
+.inputField input:is(:focus, :valid) {
+    border-bottom-color: #afafaf;
+}
+
+.inputField i {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    color: #555555;
+    font-size: 1.5rem;
+}
+
+.inputField .uil-message{
+    top: 30% !important;
+}
+
+.inputButton {
+    margin-top: 35px;
+    width: 50%;
+}
+
+.conSub{
+    margin-top: 30px;
+    align-self: flex-start;
+}
+
+#msg{
+    color: #fff;
 }
