@@ -73,7 +73,7 @@ nForm.addEventListener('submit', e => {
 })
 
 function openPopup() {
-    const popup = document.getElementById("popup");
+    const popup = document.getElementById("popupNews");
     popup.style.visibility = "visible";
 }
 
