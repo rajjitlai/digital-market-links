@@ -30,7 +30,7 @@ AOS.init({
     once: true
 });
 
-// contact and newsletter
+// contact
 const scriptURL = 'https://script.google.com/macros/s/AKfycbwDz4jyXJtUk-uzHIRO-hpjIAyOrnHERVyBLMbgNal35DSTtT1HMLM_bHf0u0XpfDK1LA/exec'
 const form = document.forms['submit-to-google-sheet']
 
@@ -52,3 +52,7 @@ form.addEventListener('submit', e => {
             msg.style.color = "red"
         })
 })
+
+// newsletters
+const newsScriptURL = "https://script.google.com/macros/s/AKfycbyhcYnCnOi_8aUkGtBPEirXfO6lc2YM1cRMoYovXif6FntxiRLnponCjQkVvKAmgAiZ2A/exec"
+
