@@ -24,12 +24,6 @@ iconChange.addEventListener("click", function () {
     }
 });
 
-AOS.init({
-    duration: 1000,
-    easing: 'ease-in-out',
-    once: true
-});
-
 // contact
 const scriptURL = 'https://script.google.com/macros/s/AKfycbwDz4jyXJtUk-uzHIRO-hpjIAyOrnHERVyBLMbgNal35DSTtT1HMLM_bHf0u0XpfDK1LA/exec'
 const form = document.forms['submit-to-google-sheet']

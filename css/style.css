@@ -13,6 +13,12 @@
     scroll-behavior: smooth;
 }
 
+main{
+    height: 100vh;
+    width: 100%;
+    position: relative;
+}
+
 nav {
     position: fixed;
     top: 0;
@@ -361,7 +367,7 @@ nav ul li a:hover {
 
 /* contact */
 .formContainer {
-    background: #fff;
+    background: var(--white-color);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 540px;
     width: 100%;
@@ -402,7 +408,7 @@ nav ul li a:hover {
     border-top: 2px solid transparent;
 }
 
-.inputField textarea{
+.inputField textarea {
     height: 60px;
     resize: none;
     overflow: auto;
@@ -421,7 +427,7 @@ nav ul li a:hover {
     font-size: 1.5rem;
 }
 
-.inputField .uil-message{
+.inputField .uil-message {
     top: 30% !important;
 }
 
@@ -430,11 +436,79 @@ nav ul li a:hover {
     width: 50%;
 }
 
-.conSub{
+.conSub {
     margin-top: 30px;
     align-self: flex-start;
 }
 
-#msg{
+#msg {
     color: #38ff42;
+}
+
+.newCon {
+    width: 100vw;
+    min-height: 100vh;
+    height: 100%;
+    text-align: center;
+    padding: 20% 35px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.newCon h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--black-color);
+}
+
+.newCon form {
+    max-width: 600px;
+    width: 100%;
+}
+
+.nInp {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 40px;
+}
+
+.nInp input {
+    width: 100%;
+    padding: 2% 5%;
+    border: 1px solid var(--main-color);
+    outline: none;
+    font-size: 1rem;
+}
+
+.nInp .uil-envelope-send {
+    cursor: pointer;
+    background: var(--main-color);
+    color: var(--white-color);
+    padding: 2%;
+    font-size: 2rem;
+}
+
+.closePopup {
+    position: absolute;
+    top: 1%;
+    right: 1%;
+    font-size: 3rem;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.popup{
+    /* visibility: hidden; */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 99;
+    transform: translate(-50%, -50%);
 }
