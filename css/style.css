@@ -118,6 +118,10 @@ nav a span{
     text-align: center;
 }
 
+.hero-content h1{
+    text-transform: capitalize;
+}
+
 .mainContainer {
     width: 100%;
     min-height: 100vh;
