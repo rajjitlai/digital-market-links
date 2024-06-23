@@ -120,6 +120,7 @@ nav a span{
 
 .hero-content h1{
     text-transform: capitalize;
+    font-weight: 600;
 }
 
 .mainContainer {
