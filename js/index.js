@@ -15,12 +15,12 @@ function toggleMenu() {
 }
 
 iconChange.addEventListener("click", function () {
-    if (iconChange.classList.contains('uil-bars')) {
-        iconChange.classList.remove('uil-bars');
-        iconChange.classList.add('uil-times');
+    if (iconChange.classList.contains('fa-bars')) {
+        iconChange.classList.remove('fa-bars');
+        iconChange.classList.add('fa-times');
     } else {
-        iconChange.classList.remove('uil-times');
-        iconChange.classList.add('uil-bars');
+        iconChange.classList.remove('fa-times');
+        iconChange.classList.add('fa-bars');
     }
 });
 
