@@ -273,8 +273,8 @@ nav ul li a:hover {
 }
 
 .not-display {
-    display: none;
-    font-size: 40px;
+    display: none !important;
+    font-size: 35px;
     font-weight: 700;
     cursor: pointer;
 }
@@ -298,7 +298,7 @@ nav ul li a:hover {
     }
 
     .not-display {
-        display: block;
+        display: block !important;
     }
 
     .showMenu {
@@ -408,12 +408,6 @@ nav ul li a:hover {
     border-top: 2px solid transparent;
 }
 
-.inputField textarea {
-    height: 60px;
-    resize: none;
-    overflow: auto;
-}
-
 .inputField input:is(:focus, :valid) {
     border-bottom-color: #afafaf;
 }
@@ -427,7 +421,7 @@ nav ul li a:hover {
     font-size: 1.5rem;
 }
 
-.inputField .uil-message {
+.inputField .fa-comment-alt {
     top: 30% !important;
 }
 
@@ -499,7 +493,7 @@ nav ul li a:hover {
 
 .closePopup {
     position: absolute;
-    top: 1%;
+    top: 3%;
     right: 1%;
     font-size: 3rem;
     cursor: pointer;
