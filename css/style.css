@@ -14,7 +14,7 @@
   scroll-behavior: smooth;
 }
 
-::selection{
+::selection {
   color: var(--white-color);
   background: var(--main-color-light);
 }
@@ -29,10 +29,10 @@
   position: relative;
 }
 
-.blur{
+.blur {
   min-height: 100vh;
   width: 100%;
-  background:transparent;
+  background: transparent;
   backdrop-filter: blur(10px);
 }
 
@@ -43,14 +43,16 @@ nav {
   align-items: center;
 }
 
-nav img {
-  width: 120px;
+.links{
+  display: flex;
+  flex: 1;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
 }
 
-.nav-links,
-.social-links {
-  flex: 1;
-  text-align: right;
+nav img {
+  width: 120px;
 }
 
 .nav-links ul li,
@@ -73,7 +75,7 @@ nav img {
   color: var(--main-color-light);
 }
 
-.social-links ul li a{
+.social-links ul li a {
   font-size: 25px;
 }
 
@@ -91,25 +93,25 @@ nav img {
   width: 100%;
 }
 
-.fa-instagram{
+.fa-instagram {
   background: linear-gradient(#405DE6, #5B51D8, #833AB4, #C13584, #E1306C, #FD1D1D, #F56040);
   -webkit-background-clip: text;
   color: transparent;
 }
 
-.fa-pinterest{
+.fa-pinterest {
   color: #e70820;
 }
 
-.fa-facebook{
+.fa-facebook {
   color: #086dff;
 }
 
-.fa-quora{
+.fa-quora {
   color: #bb322e;
 }
 
-.fa-snapchat-ghost{
+.fa-snapchat-ghost {
   background: #fffc04;
   color: var(--black-color);
   border-radius: 50%;
@@ -130,7 +132,7 @@ nav img {
   color: var(--black-color);
 }
 
-.text-box h2{
+.text-box h2 {
   color: var(--black-color);
 }
 
@@ -189,7 +191,8 @@ h3 {
   margin: 10px 0;
 }
 
-.products {
+.products,
+.about {
   width: 90%;
   margin: auto;
   text-align: center;
@@ -204,7 +207,7 @@ h3 {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.product{
+.product {
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -224,6 +227,35 @@ h3 {
   margin-bottom: 15px;
   text-align: left;
 }
+
+.ab-S {
+  background: var(--white-color);
+  padding: 20px;
+  margin: 20px 25px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.ab-S h3 {
+  color: #020202;
+}
+
+.ab-S p {
+  color: #020000;
+  font-size: 1.1em;
+  margin: 10px 0;
+}
+
+.highlight {
+  color: var(--main-color-light);
+}
+
+@media (max-width: 950px) {
+  .ab-S {
+    font-size: 0.9em;
+  }
+}
+
 
 .cta {
   margin: 100px auto;
@@ -257,14 +289,9 @@ h3 {
 }
 
 .icons .fa {
-  color: #f44336;
   margin: 0 13px;
   cursor: pointer;
   padding: 18px 0;
-}
-
-.fa-heart-o {
-  color: #f44336;
 }
 
 .cp h4 {
@@ -272,31 +299,8 @@ h3 {
   background: #fff3f3;
 }
 
-.about-us {
-  width: 80%;
-  margin: auto;
-  padding-top: 80px;
-  padding-bottom: 50px;
-}
-
-.about-col {
-  flex-basis: 48%;
-  padding: 30px 2px;
-}
-
-.about-col img {
-  width: 100%;
-}
-
-.about-col h1 {
-  padding-top: 0;
-}
-
-.about-col p {
-  padding: 15px 0 25px;
-}
-
 @media (max-width: 700px) {
+  
   .text-box h1 {
     font-size: 20px;
   }
@@ -307,7 +311,7 @@ h3 {
 
   .nav-links {
     position: fixed;
-    background: #f44336;
+    background: var(--white-color);
     height: 100vh;
     width: 200px;
     top: 0;
@@ -329,13 +333,31 @@ h3 {
     padding: 30px;
   }
 
+  .social-links{
+    display: none;
+  }
+
   .cta h1 {
     font-size: 24px;
   }
 }
 
+
+@media (max-width: 900px){
+  .links{
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 1160px){
+  .nav-links ul li, 
+  .social-links ul li{
+    padding: 8px 10px;
+  }
+}
+
 @media (max-width: 1024px) {
-  .row{
+  .row {
     flex-direction: column;
   }
 }
