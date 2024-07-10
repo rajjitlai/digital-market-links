@@ -14,12 +14,26 @@
   scroll-behavior: smooth;
 }
 
-/* HEADER */
+::selection{
+  color: var(--white-color);
+  background: var(--main-color-light);
+}
+
 .header {
   min-height: 100vh;
   width: 100%;
-  background: var(--white-color);
+  background-image: url("/assets/resources/logo.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   position: relative;
+}
+
+.blur{
+  min-height: 100vh;
+  width: 100%;
+  background:transparent;
+  backdrop-filter: blur(10px);
 }
 
 nav {
@@ -33,19 +47,22 @@ nav img {
   width: 120px;
 }
 
-.nav-links {
+.nav-links,
+.social-links {
   flex: 1;
   text-align: right;
 }
 
-.nav-links ul li {
+.nav-links ul li,
+.social-links ul li {
   list-style: none;
   display: inline-block;
-  padding: 8px 12px;
+  padding: 8px 18px;
   position: relative;
 }
 
-.nav-links ul li a {
+.nav-links ul li a,
+.social-links ul li a {
   color: var(--black-color);
   text-decoration: none;
   font-size: 17px;
@@ -54,6 +71,10 @@ nav img {
 
 .nav-links ul li a:hover {
   color: var(--main-color);
+}
+
+.social-links ul li a{
+  font-size: 25px;
 }
 
 .nav-links ul li::after {
@@ -68,6 +89,31 @@ nav img {
 
 .nav-links ul li:hover::after {
   width: 100%;
+}
+
+.fa-instagram{
+  background: linear-gradient(#405DE6, #5B51D8, #833AB4, #C13584, #E1306C, #FD1D1D, #F56040);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.fa-pinterest{
+  color: #e70820;
+}
+
+.fa-facebook{
+  color: #086dff;
+}
+
+.fa-quora{
+  color: #bb322e;
+}
+
+.fa-snapchat-ghost{
+  background: #fffc04;
+  color: var(--black-color);
+  border-radius: 50%;
+  padding: 4px;
 }
 
 .text-box {
