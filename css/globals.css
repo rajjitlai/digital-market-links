@@ -141,6 +141,10 @@ img {
     transition: color .4s;
 }
 
+.nav__logo img{
+    width: 60px;
+}
+
 .nav__actions {
     display: flex;
     align-items: center;
