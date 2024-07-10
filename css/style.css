@@ -41,14 +41,15 @@ nav {
   padding: 2% 6%;
   justify-content: space-between;
   align-items: center;
+  gap: 8rem;
 }
 
-.links{
+.links {
   display: flex;
   flex: 1;
   align-items: center;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 nav img {
@@ -91,6 +92,33 @@ nav img {
 
 .nav-links ul li:hover::after {
   width: 100%;
+}
+
+.search-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 18px;
+  outline: none;
+  border: 1px solid var(--main-color-light);
+}
+
+#search-btn {
+  background: var(--main-color);
+  color: var(--white-color);
+  padding: 15px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+#search-btn:hover {
+  background: var(--main-color-light);
+  color: #dadada;
 }
 
 .fa-instagram {
@@ -256,7 +284,6 @@ h3 {
   }
 }
 
-
 .cta {
   margin: 100px auto;
   width: 80%;
@@ -299,8 +326,7 @@ h3 {
   background: #fff3f3;
 }
 
-@media (max-width: 700px) {
-  
+@media (max-width: 740px) {
   .text-box h1 {
     font-size: 20px;
   }
@@ -333,7 +359,7 @@ h3 {
     padding: 30px;
   }
 
-  .social-links{
+  .social-links {
     display: none;
   }
 
@@ -342,16 +368,10 @@ h3 {
   }
 }
 
+@media (max-width: 1170px) {
 
-@media (max-width: 900px){
-  .links{
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 1160px){
-  .nav-links ul li, 
-  .social-links ul li{
+  .nav-links ul li,
+  .social-links ul li {
     padding: 8px 10px;
   }
 }
@@ -359,6 +379,16 @@ h3 {
 @media (max-width: 1024px) {
   .row {
     flex-direction: column;
+  }
+
+  .links {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 1520px) {
+  .search-box{
+    display: none;
   }
 }
 
