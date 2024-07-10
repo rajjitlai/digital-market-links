@@ -284,7 +284,7 @@ h3 {
   }
 }
 
-.cta {
+.contact {
   margin: 100px auto;
   width: 80%;
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
@@ -296,10 +296,76 @@ h3 {
   padding: 100px 0;
 }
 
-.cta h1 {
+.contact h1 {
   color: #fff;
   margin-bottom: 40px;
   padding: 0;
+}
+
+.formContainer {
+  max-width: 540px;
+  width: 100%;
+  margin: auto;
+  padding: 2% 4%;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+.inputField {
+  position: relative;
+  height: 50px;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.inputField input,
+.inputField textarea {
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  padding: 0 35px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  border-bottom: 2px solid #555555;
+  border-top: 2px solid transparent;
+}
+
+.inputField input:is(:focus, :valid) {
+  border-bottom-color: #afafaf;
+}
+
+.inputField i {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  color: #555555;
+  font-size: 1.5rem;
+}
+
+.inputField .fa-comment-alt {
+  top: 30% !important;
+}
+
+.inputButton {
+  margin-top: 35px;
+  width: 50%;
+}
+
+.conSub {
+  margin-top: 30px;
+  align-self: flex-start;
+}
+
+#msg {
+  color: #38ff42;
 }
 
 /* FOOTER */
@@ -363,7 +429,7 @@ h3 {
     display: none;
   }
 
-  .cta h1 {
+  .contact h1 {
     font-size: 24px;
   }
 }
@@ -387,7 +453,7 @@ h3 {
 }
 
 @media (max-width: 1520px) {
-  .search-box{
+  .search-box {
     display: none;
   }
 }
