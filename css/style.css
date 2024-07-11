@@ -388,7 +388,6 @@ nav .fa {
   background: #f3fbff;
 }
 
-
 @media (max-width: 740px) {
   .text-box h1 {
     font-size: 20px;
@@ -491,3 +490,7 @@ nav .fa {
   font-weight: 500;
 }
 
+.fa-times,
+.fa-bars{
+  color: var(--black-color) !important;
+}
