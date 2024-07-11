@@ -61,6 +61,7 @@ nav {
   padding: 2% 6%;
   justify-content: space-between;
   align-items: center;
+  gap: 6rem;
 }
 
 .links {
@@ -528,6 +529,10 @@ nav .fa {
 }
 
 @media (max-width: 700px) {
+  nav {
+    gap: 0;
+  }
+
   .nav-links {
     display: none;
   }
@@ -552,4 +557,47 @@ nav .fa {
   .menu-button {
     display: none;
   }
+}
+
+.scroll-navbar {
+  display: none;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: var(--white-color);
+  color: var(--black-color);
+  text-align: center;
+  z-index: 99;
+  overflow-x: auto;
+  white-space: nowrap;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-navbar nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+}
+
+.scroll-navbar nav ul li {
+  display: inline-block;
+  margin: 0 10px;
+  font-weight: 500;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.scroll-navbar nav ul li a {
+  color: var(--black-color);
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+.scroll-navbar nav ul li a:hover {
+  color: var(--main-color-light);
+}
+
+.scroll-navbar nav{
+  padding: 10px;
 }
