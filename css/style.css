@@ -69,6 +69,7 @@ nav {
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
+  position: relative;
 }
 
 nav img {
@@ -211,6 +212,8 @@ nav img {
 }
 
 nav .fa {
+  cursor: pointer;
+  font-size: 1.5rem;
   display: none;
 }
 
@@ -397,6 +400,7 @@ nav .fa {
     display: block;
   }
 
+  .links,
   .nav-links {
     position: fixed;
     background: var(--white-color);
@@ -411,10 +415,13 @@ nav .fa {
 
   nav .fa {
     display: block;
-    color: #fff;
     margin: 10px;
     font-size: 20px;
     cursor: pointer;
+  }
+
+  .fa-bars{
+    display: block;
   }
 
   .nav-links ul {

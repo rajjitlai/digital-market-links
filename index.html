@@ -31,7 +31,6 @@
                             <li><a href="#about">ABOUT</a></li>
                             <li><a href="#contact">CONTACT</a></li>
                         </ul>
-                        <i class="fa fa-bars" onclick="showMenu()"></i>
                     </div>
                     <div class="search-box">
                         <input type="text" id="search-input" placeholder="Search...">
@@ -70,6 +69,7 @@
                         </ul>
                     </div>
                 </div>
+                <i class="fa fa-bars" onclick="showMenu()"></i>
             </nav>
             <div class="text-box">
                 <h1>TREAT PATH</h1>
@@ -450,17 +450,7 @@
         </div>
     </section>
 
-    <script>
-        var navLinks = document.getElementById('navLinks');
-
-        function showMenu() {
-            navLinks.style.right = "0";
-        }
-
-        function hideMenu() {
-            navLinks.style.right = "-200px";
-        }
-    </script>
+    <script src="./js/main.js"></script>
 </body>
 
 </html>
