@@ -41,18 +41,10 @@ h3 {
 .header {
   min-height: 100vh;
   width: 100%;
-  background-image: url("/assets/resources/logo.png");
+  background-image: linear-gradient(rgba(255, 255, 255, 0.836), rgba(255, 255, 255, 0.774)), url('/assets/resources/logo.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  position: relative;
-}
-
-.blur {
-  min-height: 100vh;
-  width: 100%;
-  background: transparent;
-  backdrop-filter: blur(10px);
   position: relative;
 }
 
@@ -629,10 +621,9 @@ nav .fa {
   text-align: center;
   padding: 20% 35px;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.2);
+  background: #f3fbff;
   border-radius: 20px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(15px);
   display: flex;
   align-items: center;
   flex-direction: column;
