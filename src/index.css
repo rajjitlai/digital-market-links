@@ -18,9 +18,6 @@ body {
   scroll-behavior: smooth;
 }
 
-.active {
-  @apply text-mainColor;
-}
 
 ::-webkit-scrollbar {
   width: 0.65rem;

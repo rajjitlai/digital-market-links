@@ -11,4 +11,4 @@ client
     .setEndpoint(import.meta.env.VITE_APP_EP)
     .setProject(import.meta.env.VITE_APP_ID);
 
-export { ID } from "appwrite";
+export { ID, OAuthProvider } from "appwrite";
