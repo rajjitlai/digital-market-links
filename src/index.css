@@ -1,1 +1,15 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    background: #fbfbfb;
+    color: #010101;
+    font-family: 'Poppins', sans-serif;
+}
+
+@layer components {
+    .header_icons {
+        @apply bg-gray-200 rounded-md p-[6px] text-[14px] md:text-[16px] lg:text-[20px] cursor-pointer hover:bg-primary hover:text-white
+    }
+}
