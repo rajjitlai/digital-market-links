@@ -3,11 +3,8 @@ import banner2 from "../assets/images/banner2.png"
 
 export const navItems = [
     { label: 'Home', path: '/' },
-    { label: 'Health Care', path: '#' },
-    { label: 'Pet Care', path: '#' },
-    { label: 'Medicine', path: '#' },
-    { label: 'Tablets', path: '#' },
-    { label: 'Vitamins', path: '#' },
+    { label: 'Health', path: '#' },
+    { label: 'Pets', path: '#' },
     { label: 'Hot Sale', path: '#' },
     { label: "Men's", path: '#' },
     { label: "Women's", path: '#' },
@@ -15,7 +12,7 @@ export const navItems = [
 
 export const navOther = [
     { label: 'Services', path: '#' },
-    { label: 'Contact Us', path: '#' },
+    { label: 'Contact', path: '#' },
 ]
 
 export const slidesData = [

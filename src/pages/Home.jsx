@@ -5,6 +5,7 @@ import Hero from '../components/Hero'
 import Products from '../components/Products'
 import Footer from '../components/Footer'
 import HeaderMain from '../components/HeaderMain'
+import MobileNavbar from '../components/MobileNavbar'
 
 const Home = () => {
     return (
@@ -12,6 +13,7 @@ const Home = () => {
             <HeaderTop />
             <HeaderMain />
             <Navbar />
+            <MobileNavbar />
             <Hero />
             <Products />
             <Footer />
