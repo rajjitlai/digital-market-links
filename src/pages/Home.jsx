@@ -11,7 +11,7 @@ const Home = () => {
         <div className='flex flex-col w-full h-screen'>
             <HeaderTop />
             <HeaderMain />
-            <Navbar/> 
+            <Navbar />
             <Hero />
             <Products />
             <Footer />
