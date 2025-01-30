@@ -5,9 +5,11 @@ import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 import { navItems } from '../constants';
 import { FiHeart } from 'react-icons/fi';
+import { useAuth } from '../context/AuthContext';
 
 const MobileSidebar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const { user } = useAuth();
 
     return (
         <div className="lg:hidden fixed top-4 left-4 z-50">
@@ -35,14 +37,21 @@ const MobileSidebar = () => {
                         ))}
                     </div>
                     <div className="flex flex-col gap-2 border-t py-4 mt-10 text-left">
-                        <div className='flex gap-2 items-center'>
+                        <Link to="/saved" className='flex gap-2 items-center'>
                             <FiHeart className='text-2xl' />
                             <span className='text-xl'>Saved</span>
-                        </div>
-                        <div className='flex gap-2 items-center'>
-                            <FaUserCircle className="text-2xl" />
-                            <span className="text-xl">User Name</span>
-                        </div>
+                        </Link>
+                        {user ? (
+                            <Link to="/dashboard" className='flex flex-row gap-2'>
+                                <FaUserCircle className="text-2xl text-gray-600" />
+                                <span className="text-xl text-gray-700">{user.name}</span>
+                            </Link>
+                        ) : (
+                            <Link to="/login" className="flex gap-2 items-center text-gray-500 hover:text-primary transition">
+                                <FaUserCircle className="text-2xl" />
+                                <span className="text-xl">Login</span>
+                            </Link>
+                        )}
                     </div>
                 </div>
             </div>

@@ -1,4 +1,3 @@
-import React from 'react'
 import HeaderTop from "../components/HeaderTop"
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'

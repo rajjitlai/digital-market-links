@@ -2,12 +2,12 @@ import banner from "../assets/images/banner.png"
 import banner2 from "../assets/images/banner2.png"
 
 export const navItems = [
-    { label: 'Home', path: '/' },
-    { label: 'Health', path: '#' },
-    { label: 'Pets', path: '#' },
-    { label: 'Hot Sale', path: '#' },
-    { label: "Men's", path: '#' },
-    { label: "Women's", path: '#' },
+    { id: 1,label: 'Home', path: '/' },
+    { id: 2,label: 'Health', path: '#' },
+    { id: 3,label: 'Pets', path: '#' },
+    { id: 4,label: 'Hot Sale', path: '#' },
+    { id: 5,label: "Men's", path: '#' },
+    { id: 6,label: "Women's", path: '#' },
 ]
 
 export const navOther = [
