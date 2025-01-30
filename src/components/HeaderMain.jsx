@@ -1,4 +1,3 @@
-import React from 'react'
 import logo from "../assets/icon.png"
 import { BsSearch } from 'react-icons/bs'
 import { BiUser } from 'react-icons/bi'
