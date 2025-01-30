@@ -25,7 +25,7 @@ const MobileSidebar = () => {
                     <AiOutlineClose />
                 </button>
 
-                <div className="p-6 mt-12 flex flex-col justify-between h-screen">
+                <div className="p-6 mt-12 flex flex-col justify-between h-full">
                     <div>
                         {navItems.map((item) => (
                             <div key={item.id} className="text-xl mb-4">
@@ -34,12 +34,11 @@ const MobileSidebar = () => {
                         ))}
                     </div>
 
-                    <div className="mt-auto border-t pt-4 pb-10">
+                    <div className="mt-auto border-t pt-4">
                         <div className="flex items-center gap-2 mb-4">
                             <FaUserCircle className="text-3xl" />
                             <span className="text-xl">User Name</span>
                         </div>
-                        <button className="w-full bg-primary text-white py-2 rounded-lg hover:bg-secondary">Logout</button>
                     </div>
                 </div>
             </div>
