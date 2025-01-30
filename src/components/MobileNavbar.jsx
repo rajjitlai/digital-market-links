@@ -25,23 +25,19 @@ const MobileSidebar = () => {
                     <AiOutlineClose />
                 </button>
 
-                {/* Flex container for nav items and user section */}
-                <div className="p-6 mt-12 flex flex-col h-full">
-    {/* Navigation Items */}
-    <div className="flex-1">
-        {navItems.map((item) => (
-            <div key={item.id} className="text-xl mb-4">
-                <Link to={item.path} className='hover:text-primary hover:underline'>{item.label}</Link>
-            </div>
-        ))}
-    </div>
-
-    {/* User Section */}
-    <div className="flex items-center gap-2 border-t pt-4">
-        <FaUserCircle className="text-3xl" />
-        <span className="text-xl">User Name</span>
-    </div>
-</div>
+                <div className="p-6 mt-12 flex flex-col justify-between items-center">
+                    <div>
+                        {navItems.map((item) => (
+                            <div key={item.id} className="text-xl mb-4">
+                                <Link to={item.path} className='hover:text-primary hover:underline'>{item.label}</Link>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="flex items-center gap-2 border-t py-4">
+                        <FaUserCircle className="text-3xl" />
+                        <span className="text-xl">User Name</span>
+                    </div>
+                </div>
             </div>
         </div>
     );
