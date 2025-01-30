@@ -16,8 +16,12 @@ const HeaderMain = () => {
                     <BsSearch className='absolute right-0 top-0 mr-3 mt-3 text-gray-400' size={20} />
                 </div>
                 <div className='hidden lg:flex gap-4 text-gray-500 text-[30px] cursor-pointer'>
-                    <FiHeart />
-                    <BiUser />
+                    <Link to="/saved" >
+                        <FiHeart />
+                    </Link>
+                    <Link to="/login" >
+                        <BiUser />
+                    </Link>
                 </div>
             </div>
 

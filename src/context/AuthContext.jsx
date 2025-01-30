@@ -3,6 +3,7 @@ import { account } from "../config/appwrite";
 
 const AuthContext = createContext();
 
+// eslint-disable-next-line react/prop-types
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
 
@@ -19,7 +20,7 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     const login = async (email, password) => {
-        await account.createEmailSession(email, password);
+        await account.createEmailPasswordSession(email, password);
         setUser(await account.get());
     };
 
