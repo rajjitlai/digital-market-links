@@ -17,7 +17,7 @@ const MobileSidebar = () => {
                 {isOpen ? <AiOutlineClose /> : <IoMenuOutline />}
             </button>
 
-            <div className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform ${isOpen ? "translate-x-0" : "-translate-x-full"} transition-transform duration-300 ease-in-out`}>
+            <div className={`fixed top-0 left-0 h-screen w-64 bg-white shadow-lg transform ${isOpen ? "translate-x-0" : "-translate-x-full"} transition-transform duration-300 ease-in-out`}>
                 <button
                     onClick={() => setIsOpen(false)}
                     className="absolute top-4 right-4 text-3xl"
@@ -25,7 +25,7 @@ const MobileSidebar = () => {
                     <AiOutlineClose />
                 </button>
 
-                <div className="p-6 mt-12 flex flex-col justify-between h-full">
+                <div className="p-6 mt-12 flex flex-col justify-between h-screen">
                     <div>
                         {navItems.map((item) => (
                             <div key={item.id} className="text-xl mb-4">
