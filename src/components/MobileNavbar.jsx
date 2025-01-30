@@ -34,7 +34,7 @@ const MobileSidebar = () => {
                         ))}
                     </div>
 
-                    <div className="mt-auto border-t pt-4">
+                    <div className="mt-auto border-t">
                         <div className="flex items-center gap-2 mb-4">
                             <FaUserCircle className="text-3xl" />
                             <span className="text-xl">User Name</span>
