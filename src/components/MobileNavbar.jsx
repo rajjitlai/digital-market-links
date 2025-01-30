@@ -4,6 +4,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 import { navItems } from '../constants';
+import { FiHeart } from 'react-icons/fi';
 
 const MobileSidebar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +26,7 @@ const MobileSidebar = () => {
                     <AiOutlineClose />
                 </button>
 
-                <div className="p-6 mt-12 flex flex-col justify-between items-center h-screen">
+                <div className="p-6 px-12 mt-12 flex flex-col justify-between text-left">
                     <div>
                         {navItems.map((item) => (
                             <div key={item.id} className="text-xl mb-4">
@@ -33,9 +34,15 @@ const MobileSidebar = () => {
                             </div>
                         ))}
                     </div>
-                    <div className="flex items-center gap-2 border-t py-4 mb-5">
-                        <FaUserCircle className="text-3xl" />
-                        <span className="text-xl">User Name</span>
+                    <div className="flex flex-col gap-2 border-t py-4 mt-10 text-left">
+                        <div className='flex gap-2 items-center'>
+                            <FiHeart className='text-2xl' />
+                            <span className='text-xl'>Saved</span>
+                        </div>
+                        <div className='flex gap-2 items-center'>
+                            <FaUserCircle className="text-2xl" />
+                            <span className="text-xl">User Name</span>
+                        </div>
                     </div>
                 </div>
             </div>
