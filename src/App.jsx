@@ -6,6 +6,7 @@ import Dashboard from "./pages/personal/Dashboard";
 import { useAuth } from "./context/AuthContext";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import Saved from "./pages/personal/Saved";
+import SingleProduct from "./components/SingleProduct";
 
 // eslint-disable-next-line react/prop-types
 const PrivateRoute = ({ children }) => {
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/product/[:id]" element={<SingleProduct />} />
         <Route path="/dashboard" element={
           <PrivateRoute>
             <Dashboard />
