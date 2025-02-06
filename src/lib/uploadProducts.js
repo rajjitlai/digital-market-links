@@ -4,7 +4,7 @@ export const addProduct = async (prodData) => {
     try {
         const databaseId = import.meta.env.VITE_APP_DB;
         const collectionId = import.meta.env.VITE_APP_PROD_COLLECTION;
-        const documentId = ID.unique();
+        const documentId = ID.unique()
 
         const response = await database.createDocument(databaseId, collectionId, documentId, {
             item_name: prodData.item_name,

@@ -1,11 +1,22 @@
-import { account } from '../config/appwrite';
+import { account, database } from '../config/appwrite';
 import { ID } from 'appwrite';
 import toast from 'react-hot-toast';
 
+const DATABASE_ID = import.meta.env.VITE_APP_DB
+const USER_COLLECTION_ID = import.meta.env.VITE_APP_USERS_COLLECTION
+
 export const registerUser = async (userInfo) => {
     try {
-        await account.create(ID.unique(), userInfo.email, userInfo.password, userInfo.username);
+        const user = await account.create(ID.unique(), userInfo.email, userInfo.password, userInfo.username);
+
         await account.createEmailPasswordSession(userInfo.email, userInfo.password);
+
+        await database.createDocument(DATABASE_ID, USER_COLLECTION_ID, user.$id, {
+            username: userInfo.username,
+            email: userInfo.email,
+            saved: []
+        });
+
         await account.createVerification(`${window.location.origin}/verify-email`);
         toast.success("User registered successfully! Please check your email to verify your account.");
     } catch (error) {
