@@ -4,7 +4,7 @@ import { database } from "../../config/appwrite";
 
 const Saved = () => {
     const { user, loading: authLoading } = useAuth();
-    const [savedProducts, setSavedProducts] = useState([]);
+    const [saved, setSaved] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -17,10 +17,10 @@ const Saved = () => {
 
                 const savedItems = await database.getDocument(databaseId, collectionId, user.$id);
 
-                setSavedProducts(savedItems?.save || []);
+                setSaved(savedItems?.save || []);
             } catch (error) {
                 console.error("Error fetching saved items:", error);
-                setSavedProducts([]);
+                setSaved([]);
             } finally {
                 setLoading(false);
             }
@@ -41,11 +41,11 @@ const Saved = () => {
 
             {loading ? (
                 <p>Loading saved products...</p>
-            ) : savedProducts.length === 0 ? (
+            ) : saved.length === 0 ? (
                 <p>No saved products found.</p>
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {savedProducts.map((product) => (
+                    {saved.map((product) => (
                         <div key={product.$id} className="bg-gray-700 p-4 rounded-md">
                             <img src={product.item_image} alt={product.item_name} className="w-full h-40 object-cover rounded-md mb-4" />
                             <h3 className="text-xl font-semibold">{product.item_name}</h3>

@@ -11,9 +11,15 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (user) {
-      getUserProfile(user?.id).then(setUserData);
+      console.log("Fetching profile for user:", user);
+      if (!user.$id) {
+        console.error("Error: user.id is undefined");
+        return;
+      }
+      getUserProfile(user.id).then(setUserData);
     }
   }, [user]);
+
 
   const handleLogout = () => {
     logout();
@@ -47,8 +53,8 @@ const Dashboard = () => {
         <div className="mt-6">
           <h3 className="text-xl font-semibold mb-4">Saved Products</h3>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {userData?.savedProducts?.length > 0 ? (
-              userData.savedProducts.map((product) => (
+            {userData?.saved?.length > 0 ? (
+              userData.saved.map((product) => (
                 <ProductCard key={product.id} {...product} />
               ))
             ) : (

@@ -44,7 +44,7 @@ const HeaderMain = () => {
                             to={userCheck ? "/admin" : "/dashboard"}
                             className="flex items-center gap-2 text-lg font-semibold text-gray-700"
                         >
-                            <span>{user?.name || "Guest"}</span>
+                            <span>{user.username}</span>
                         </Link>
                     ) : (
                         <Link to="/login" className="flex items-center gap-1 text-gray-500 hover:text-primary transition">

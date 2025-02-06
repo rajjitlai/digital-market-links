@@ -48,9 +48,9 @@ const Login = () => {
                             />
                         </div>
 
-                        <div className="flex justify-between items-center text-gray-600 text-sm">
+                        {/* <div className="flex justify-between items-center text-gray-600 text-sm">
                             <Link to="/" className="hover:text-primary">Forgot Password?</Link>
-                        </div>
+                        </div> */}
 
                         <button type="submit" className="w-full bg-primary text-white py-3 rounded-md text-lg font-semibold hover:bg-secondary transition">
                             Login
