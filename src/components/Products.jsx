@@ -65,6 +65,7 @@ const Products = ({ filter }) => {
                                     title={product.item_name}
                                     desc={truncateDescription(product.item_description)}
                                     price={product.item_price}
+                                    tags={product.tags}
                                 />
                             </Link>
                         ))

@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
-import { BsBookmark, BsBookmarkFill } from 'react-icons/bs'
 import { useState } from 'react'
+import { BsBookmark, BsBookmarkFill } from 'react-icons/bs'
 
 
-const ProductCard = ({ img, title, desc, price }) => {
+const ProductCard = ({ img, title, desc, price, tags = [] }) => {
     const [bookmarked, setBookmarked] = useState(false);
 
     const handleBookmark = () => {
@@ -30,6 +30,20 @@ const ProductCard = ({ img, title, desc, price }) => {
                 <h2 className='text-primary font-semibold uppercase'>{title}</h2>
                 <p className='text-gray-500 text-sm max-w-[200px] mx-auto'>{desc}</p>
                 <div className='font-bold text-lg text-primary'>${price}</div>
+
+                {Array.isArray(tags) ? (
+                    <div className='text-gray-500 text-sm'>
+                        {tags.map((tag, index) => (
+                            <span key={index} className='mr-2'>#{tag.trim()}</span>
+                        ))}
+                    </div>
+                ) : typeof tags === 'string' ? (
+                    <div className='text-gray-500 text-sm'>
+                        {tags.split(',').map((tag, index) => (
+                            <span key={index} className='mr-2'>#{tag.trim()}</span>
+                        ))}
+                    </div>
+                ) : null}
             </div>
         </div>
     )
