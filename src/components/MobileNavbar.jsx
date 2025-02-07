@@ -52,7 +52,7 @@ const MobileSidebar = () => {
                         {user ? (
                             <Link to={userCheck ? "/admin" : "/dashboard"} className="flex flex-row gap-2">
                                 <FaUserCircle className="text-2xl text-gray-600" />
-                                <span className="text-xl text-gray-700">{user.name}</span>
+                                <span className="text-xl text-gray-700">{user.username}</span>
                             </Link>
                         ) : (
                             <Link

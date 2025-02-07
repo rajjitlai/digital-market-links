@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { createContext, useContext, useEffect, useState } from "react";
 import { account } from "../config/appwrite";
 import { getUserProfile } from "../lib/getUser";
@@ -7,46 +8,40 @@ const AuthContext = createContext();
 // eslint-disable-next-line react/prop-types
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const checkUser = async () => {
             try {
                 const session = await account.get();
-
-                if (!session?.$id) {
-                    console.error("User session ID is missing!");
-                    setUser(null);
-                    return;
-                }
+                if (!session?.$id) throw new Error("No active session");
 
                 const userProfile = await getUserProfile(session.$id);
-                if (userProfile) {
-                    setUser({ id: session.$id, email: session.email, ...userProfile });
-                } else {
-                    setUser(null);
-                }
+                setUser({ id: session.$id, email: session.email, ...userProfile });
             } catch (error) {
-                console.error("Auth error:", error);
                 setUser(null);
+            } finally {
+                setLoading(false);
             }
-        }
+        };
         checkUser();
     }, []);
 
     const login = async (email, password) => {
-        await account.createEmailPasswordSession(email, password);
-        const session = await account.get();
+        try {
+            await account.createEmailPasswordSession(email, password);
+            const session = await account.get();
+            if (!session?.$id) throw new Error("User session ID is missing after login");
 
-        if (!session?.$id) {
-            console.error("User session ID is missing after login!");
-            return;
-        }
-
-        const userProfile = await getUserProfile(session.$id);
-        if (userProfile) {
+            const userProfile = await getUserProfile(session.$id);
             setUser({ id: session.$id, email: session.email, ...userProfile });
-        } else {
-            setUser(null);
+
+            const params = new URLSearchParams(window.location.search);
+            const redirectPath = params.get("redirect") || "/";
+            window.location.href = redirectPath; 
+        } catch (error) {
+            console.error("Login failed:", error);
+            throw error;
         }
     };
 
@@ -58,15 +53,15 @@ export const AuthProvider = ({ children }) => {
     const logout = async () => {
         await account.deleteSession("current");
         setUser(null);
+        window.location.href = "/login";
     };
 
     return (
-        <AuthContext.Provider value={{ user, login, signup, logout }}>
+        <AuthContext.Provider value={{ user, loading, login, signup, logout }}>
             {children}
         </AuthContext.Provider>
     );
 };
 
-export const useAuth = () => {
-    return useContext(AuthContext);
-};
+// eslint-disable-next-line react-refresh/only-export-components
+export const useAuth = () => useContext(AuthContext);
