@@ -3,6 +3,13 @@ import ProductCard from "./ProductCard";
 import { Link } from "react-router-dom";
 import { getProd } from "../lib/getProd";
 
+// Import other product category components
+import Health from "./filterComponents/Health";
+import Pets from "./filterComponents/Pets";
+import Men from "./filterComponents/Men";
+import Women from "./filterComponents/Women";
+import Hot from "./filterComponents/Hot";
+
 // eslint-disable-next-line react/prop-types
 const Products = ({ filter }) => {
     const [products, setProducts] = useState([]);
@@ -10,36 +17,39 @@ const Products = ({ filter }) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchProducts = async () => {
-            setIsLoading(true);
-            setError(null);
-            try {
-                const gotProd = await getProd();
-                setProducts(gotProd);
-                console.log("Fetched products:", gotProd);
-            } catch (err) {
-                console.error("Error fetching products", err);
-                setError(err.message);
-            } finally {
-                setIsLoading(false);
-            }
-        };
+        if (filter === "All") {
+            const fetchProducts = async () => {
+                setIsLoading(true);
+                setError(null);
+                try {
+                    const gotProd = await getProd();
+                    setProducts(gotProd);
+                    console.log("Fetched products:", gotProd);
+                } catch (err) {
+                    console.error("Error fetching products", err);
+                    setError(err.message);
+                } finally {
+                    setIsLoading(false);
+                }
+            };
 
-        fetchProducts();
-    }, []);
+            fetchProducts();
+        }
+    }, [filter]);
 
     const truncateDescription = (desc, length = 100) => {
         return desc.length > length ? `${desc.substring(0, length)}...` : desc;
     };
 
-    // Apply filtering based on the selected category (filter)
-    const filteredProducts = filter
-        ? products.filter((product) => product.category === filter)
-        : products;
+    if (filter === "Hot") return <Hot />;
+    if (filter === "Health") return <Health />;
+    if (filter === "Pets") return <Pets />;
+    if (filter === "Men") return <Men />;
+    if (filter === "Women") return <Women />;
 
     return (
         <div className="container px-16 pt-16">
-            <h2 className="font-medium text-2xl pb-4">New Products</h2>
+            <h2 className="text-2xl pb-4 font-bold">Our Products</h2>
 
             {isLoading ? (
                 <p>Loading...</p>
@@ -47,8 +57,8 @@ const Products = ({ filter }) => {
                 <p className="text-red-500">Error: {error}</p>
             ) : (
                 <div className="grid grid-cols-1 place-items-center sm:place-items-start sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 xl:gap-x-20 xl:gap-y-10">
-                    {filteredProducts.length > 0 ? (
-                        filteredProducts.map((product) => (
+                    {products.length > 0 ? (
+                        products.map((product) => (
                             <Link to={`/product/${product.$id}`} key={product.$id} className="w-full">
                                 <ProductCard
                                     img={product.item_image}
@@ -59,7 +69,7 @@ const Products = ({ filter }) => {
                             </Link>
                         ))
                     ) : (
-                        <p className="text-gray-500">No products found for this category.</p>
+                        <p className="text-gray-500">No products found.</p>
                     )}
                 </div>
             )}
