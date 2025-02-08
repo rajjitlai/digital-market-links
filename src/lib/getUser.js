@@ -10,7 +10,6 @@ export const getUserProfile = async (userId) => {
     }
 
     try {
-        console.log("Fetching user profile for ID:", userId);
         const user = await database.getDocument(DATABASE_ID, USER_COLLECTION_ID, userId);
         return user;
     } catch (error) {

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
-import { Link } from "react-router-dom";
 import { getProd } from "../lib/getProd";
 
 // Import other product category components
@@ -24,7 +23,6 @@ const Products = ({ filter }) => {
                 try {
                     const gotProd = await getProd();
                     setProducts(gotProd);
-                    console.log("Fetched products:", gotProd);
                 } catch (err) {
                     console.error("Error fetching products", err);
                     setError(err.message);
@@ -59,15 +57,15 @@ const Products = ({ filter }) => {
                 <div className="grid grid-cols-1 place-items-center sm:place-items-start sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 xl:gap-x-20 xl:gap-y-10">
                     {products.length > 0 ? (
                         products.map((product) => (
-                            <Link to={`/product/${product.$id}`} key={product.$id} className="w-auto">
-                                <ProductCard
-                                    img={product.item_image}
-                                    title={product.item_name}
-                                    desc={truncateDescription(product.item_description)}
-                                    price={product.item_price}
-                                    tags={product.tags}
-                                />
-                            </Link>
+                            <ProductCard
+                                key={product.$id}
+                                id={product.$id}
+                                img={product.item_image}
+                                title={product.item_name}
+                                desc={truncateDescription(product.item_description)}
+                                price={product.item_price}
+                                tags={product.tags}
+                            />
                         ))
                     ) : (
                         <p className="text-gray-500">No products found.</p>
