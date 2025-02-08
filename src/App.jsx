@@ -7,7 +7,8 @@ import Signup from "./auth/Signup";
 import Dashboard from "./pages/personal/Dashboard";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import Saved from "./pages/personal/Saved";
-import SingleProduct from "./components/SingleProduct";
+import SingleProduct from "./components/SingleProduct/SingleProduct";
+import Layout from "./Layout";
 import { useEffect, useState } from "react";
 
 const PrivateRoute = ({ children }) => {
@@ -20,7 +21,7 @@ const PrivateRoute = ({ children }) => {
     }
   }, [loading, user]);
 
-  if (loading) return <div>Loading...</div>; // Show loading spinner while checking auth
+  if (loading) return <div>Loading...</div>;
   return user ? children : <Navigate to={`/login?redirect=${redirectPath || "/"}`} />;
 };
 
@@ -31,23 +32,33 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/product/:id" element={<SingleProduct />} />
+        <Route path="/product/:id" element={
+          <Layout>
+            <SingleProduct />
+          </Layout>
+        } />
 
         <Route path="/dashboard" element={
           <PrivateRoute>
-            <Dashboard />
+            <Layout>
+              <Dashboard />
+            </Layout>
           </PrivateRoute>
         } />
 
         <Route path="/saved" element={
           <PrivateRoute>
-            <Saved />
+            <Layout>
+              <Saved />
+            </Layout>
           </PrivateRoute>
         } />
 
         <Route path="/admin" element={
           <PrivateRoute>
-            <AdminDashboard />
+            <Layout>
+              <AdminDashboard />
+            </Layout>
           </PrivateRoute>
         } />
 
