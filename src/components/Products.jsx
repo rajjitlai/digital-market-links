@@ -48,8 +48,8 @@ const Products = ({ filter }) => {
     if (filter === "Women") return <Women />;
 
     return (
-        <div className="container px-16 pt-16 mx-auto">
-            <h2 className="text-2xl pb-4 font-bold">Our Products</h2>
+        <div className="container px-8 lg:px-16 pt-16 mx-auto">
+            <h3 className="text-3xl font-bold mb-8 text-center">Products</h3>
 
             {isLoading ? (
                 <p>Loading...</p>
@@ -59,7 +59,7 @@ const Products = ({ filter }) => {
                 <div className="grid grid-cols-1 place-items-center sm:place-items-start sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 xl:gap-x-20 xl:gap-y-10">
                     {products.length > 0 ? (
                         products.map((product) => (
-                            <Link to={`/product/${product.$id}`} key={product.$id} className="w-full">
+                            <Link to={`/product/${product.$id}`} key={product.$id} className="w-auto">
                                 <ProductCard
                                     img={product.item_image}
                                     title={product.item_name}

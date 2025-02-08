@@ -1,7 +1,7 @@
 // eslint-disable-next-line react/prop-types
 const Slide = ({ img, title, mainTitle, price }) => {
     return (
-        <div className="outline-none border-none relative w-full max-w-[1200px] mx-auto">
+        <div className="outline-none border-none relative w-full mx-auto">
             {/* Image Wrapper with Dark Overlay */}
             <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden rounded">
                 {/* Image */}
