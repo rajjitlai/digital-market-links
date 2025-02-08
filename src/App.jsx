@@ -21,7 +21,7 @@ const PrivateRoute = ({ children }) => {
     }
   }, [loading, user]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div className="text-center flex items-center justify-center w-full h-screen">Loading...</div>;
   return user ? children : <Navigate to={`/login?redirect=${redirectPath || "/"}`} />;
 };
 

@@ -1,16 +1,39 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BsBookmark, BsBookmarkFill } from "react-icons/bs";
-import { createSaved } from "../lib/createSaved";
+import { createSaved, deleteSaved, getUserSavedProducts } from "../lib/createSaved";
 import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ id, img, title, desc, price, tags = [] }) => {
     const { user } = useAuth();
     const [bookmarked, setBookmarked] = useState(false);
+    const [savedProductId, setSavedProductId] = useState(null);
+
+    useEffect(() => {
+        if (!user) return;
+
+        const fetchSavedProducts = async () => {
+            try {
+                const savedProducts = await getUserSavedProducts(user.$id);
+                const savedItem = savedProducts.find((product) =>
+                    Array.isArray(product.product_id) && product.product_id.includes(id) // Ensure product_id is an array
+                );
+
+                if (savedItem) {
+                    setBookmarked(true);
+                    setSavedProductId(savedItem.$id);
+                }
+            } catch (error) {
+                console.error("Error fetching saved products:", error);
+            }
+        };
+
+        fetchSavedProducts();
+    }, [user, id]);
 
     const handleBookmark = async (e) => {
-        e.stopPropagation(); // Prevents event from triggering Link navigation
+        e.stopPropagation();
 
         if (!user) {
             console.error("User not authenticated. Cannot save product.");
@@ -18,21 +41,19 @@ const ProductCard = ({ id, img, title, desc, price, tags = [] }) => {
         }
 
         try {
-            const savedData = {
-                userId: user.$id,
-                productId: id,
-                title,
-                desc,
-                price,
-                img,
-                tags: Array.isArray(tags) ? tags : tags.split(","),
-            };
-
-            await createSaved(savedData);
-            setBookmarked(!bookmarked);
-            console.log("Product saved successfully!");
+            if (bookmarked && savedProductId) {
+                await deleteSaved(savedProductId);
+                setBookmarked(false);
+                setSavedProductId(null);
+                console.log("Product removed from saved list!");
+            } else {
+                const savedItem = await createSaved(user.$id, id);
+                setBookmarked(true);
+                setSavedProductId(savedItem.$id);
+                console.log("Product saved successfully!");
+            }
         } catch (error) {
-            console.error("Failed to save product:", error);
+            console.error("Failed to update saved products:", error);
         }
     };
 

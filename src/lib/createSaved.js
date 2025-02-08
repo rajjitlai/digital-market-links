@@ -1,20 +1,25 @@
 import { database, ID } from "../config/appwrite";
+import { Query } from "appwrite";
 
-export const createSaved = async (data) => {
-    try {
-        const databaseId = import.meta.env.VITE_APP_DB;
-        const collectionId = import.meta.env.VITE_APP_SAVED_COLLECTION;
-        const documentId = ID.unique();
+const databaseId = import.meta.env.VITE_APP_DB
+const collectionId = import.meta.env.VITE_APP_SAVED_COLLECTION
 
-        if (!data.userId) {
-            throw new Error("User ID is required to save the product.");
-        }
+export const createSaved = async (userId, productId) => {
+    return database.createDocument(
+        databaseId,
+        collectionId,
+        ID.unique(),
+        { user: userId, product: productId }
+    );
+};
 
-        const response = await database.createDocument(databaseId, collectionId, documentId, data);
+export const deleteSaved = async (savedId) => {
+    return database.deleteDocument(databaseId, collectionId, savedId);
+};
 
-        return response;
-    } catch (error) {
-        console.error("An error occurred while saving the product:", error);
-        throw error;
-    }
+export const getUserSavedProducts = async (userId) => {
+    const response = await database.listDocuments(databaseId, collectionId, [
+        Query.equal("user", userId),
+    ]);
+    return response.documents;
 };
