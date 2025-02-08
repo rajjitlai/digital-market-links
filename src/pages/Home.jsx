@@ -17,7 +17,7 @@ const Home = () => {
             <Hero />
 
             <Navbar setFilter={setFilter} />
-            <MobileNavbar />
+            <MobileNavbar setFilter={setFilter} />
 
             <main className="flex-1 container mx-auto px-4 py-6">
                 <Products filter={filter} />
