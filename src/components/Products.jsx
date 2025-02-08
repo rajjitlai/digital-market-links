@@ -48,7 +48,7 @@ const Products = ({ filter }) => {
     if (filter === "Women") return <Women />;
 
     return (
-        <div className="container px-8 lg:px-16 pt-16 mx-auto">
+        <div className="container px-8 lg:px-16 pt-16 mx-auto" id="products">
             <h3 className="text-3xl font-bold mb-8 text-center">Products</h3>
 
             {isLoading ? (

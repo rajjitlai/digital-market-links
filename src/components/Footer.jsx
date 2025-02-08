@@ -8,7 +8,7 @@ const Footer = () => {
                 <div>
                     <h2 className="text-2xl font-bold text-black">TREAT PATH GLOBAL</h2>
                     <p className="mt-2 text-sm text-gray-400">
-                        Creating awesome experiences for the web.
+                        Quality Health and Pet Care Medicines
                     </p>
                 </div>
 
@@ -17,17 +17,16 @@ const Footer = () => {
                     <div>
                         <h3 className="text-lg font-semibold text-black">Company</h3>
                         <ul className="mt-2 space-y-2">
-                            <li><a href="#" className="hover:text-gray-200">About</a></li>
-                            <li><a href="#" className="hover:text-gray-200">Blog</a></li>
-                            <li><a href="#" className="hover:text-gray-200">Careers</a></li>
+                            <li><a href="#products" className="hover:text-primary hover:underline">Products</a></li>
+                            <li><a href="#services" className="hover:text-primary hover:underline">Services</a></li>
                         </ul>
                     </div>
                     <div>
                         <h3 className="text-lg font-semibold text-black">Support</h3>
                         <ul className="mt-2 space-y-2">
-                            <li><a href="#" className="hover:text-gray-200">Help Center</a></li>
-                            <li><a href="#" className="hover:text-gray-200">Contact Us</a></li>
-                            <li><a href="#" className="hover:text-gray-200">Privacy Policy</a></li>
+                            <li><a href="#" className="hover:text-primary hover:underline">Help Center</a></li>
+                            <li><a href="#contact" className="hover:text-primary hover:underline">Contact Us</a></li>
+                            <li><a href="#" className="hover:text-primary hover:underline">Privacy Policy</a></li>
                         </ul>
                     </div>
                 </div>
@@ -36,17 +35,17 @@ const Footer = () => {
                 <div>
                     <h3 className="text-lg font-semibold text-black">Follow Us</h3>
                     <div className="flex space-x-4 mt-3">
-                        <a href="#" className="hover:text-white"><FaFacebook size={20} /></a>
-                        <a href="#" className="hover:text-white"><FaSnapchat size={20} /></a>
-                        <a href="#" className="hover:text-white"><FaInstagram size={20} /></a>
-                        <a href="#" className="hover:text-white"><FaPinterest size={20} /></a>
+                        <a href="https://www.facebook.com/profile.php?id=61561559393495" target='_blank' className="hover:text-primary"><FaFacebook size={20} /></a>
+                        <a href="https://www.snapchat.com/add/treatpathglobal?share_id=Nz03kAb8DLI&locale=en-US" target='_blank' className="hover:text-primary"><FaSnapchat size={20} /></a>
+                        <a href="https://www.instagram.com/treatpathglobal/" target='_blank' className="hover:text-primary"><FaInstagram size={20} /></a>
+                        <a href="https://in.pinterest.com/treatpath/" target='_blank' className="hover:text-primary"><FaPinterest size={20} /></a>
                     </div>
                 </div>
             </div>
 
             {/* Copyright */}
             <div className="mt-8 border-t border-gray-700 pt-4 text-center text-sm">
-                © {new Date().getFullYear()} TREAT PATH GLOBAL. All rights reserved.
+                © 2024 - {new Date().getFullYear()} TREAT PATH GLOBAL. All rights reserved.
             </div>
         </footer>
     );
