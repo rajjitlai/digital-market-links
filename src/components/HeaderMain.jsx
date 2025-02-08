@@ -1,7 +1,6 @@
 import logo from "../assets/icon.png";
-import { BsSearch } from "react-icons/bs";
+import { BsFillBookmarkFill, BsSearch } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
-import { FiHeart } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
@@ -36,7 +35,7 @@ const HeaderMain = () => {
 
                 <div className="hidden lg:flex gap-4 text-gray-500 text-[30px] cursor-pointer">
                     <Link to="/saved" onClick={handleProtectedRoute}>
-                        <FiHeart className="text-gray-500 hover:text-primary transition" />
+                        <BsFillBookmarkFill className="text-gray-500 hover:text-primary transition size-6" />
                     </Link>
 
                     {user ? (

@@ -6,6 +6,7 @@
     background: #fbfbfb;
     color: #010101;
     font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
 }
 
 @layer components {

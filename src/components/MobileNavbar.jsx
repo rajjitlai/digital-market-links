@@ -1,11 +1,33 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
-import { IoMenuOutline } from 'react-icons/io5';
-import { AiOutlineClose } from 'react-icons/ai';
-import { navOther } from '../constants';
+import { useState, useEffect } from "react";
+import { IoMenuOutline } from "react-icons/io5";
+import { AiOutlineClose } from "react-icons/ai";
+import { navOther } from "../constants";
+import { BsFillBookmarkFill } from "react-icons/bs";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { BiUser } from "react-icons/bi";
 
 const MobileSidebar = ({ setFilter }) => {
+    const { user } = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const userCheck = user?.labels?.includes("admin");
+
+    const handleProtectedRoute = (e) => {
+        if (!user) {
+            e.preventDefault();
+            navigate("/login");
+        }
+    };
+
     const [isOpen, setIsOpen] = useState(false);
+
+    // Close sidebar when route changes
+    useEffect(() => {
+        setIsOpen(false);
+    }, [location.pathname]);
 
     return (
         <div className="lg:hidden fixed top-4 left-4 z-50">
@@ -17,7 +39,8 @@ const MobileSidebar = ({ setFilter }) => {
             </button>
 
             <div
-                className={`fixed top-0 left-0 h-screen w-64 bg-white shadow-lg transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out`}
+                className={`fixed top-0 left-0 h-screen w-64 bg-white shadow-lg transform ${isOpen ? "translate-x-0" : "-translate-x-full"
+                    } transition-transform duration-300 ease-in-out`}
             >
                 <button
                     onClick={() => setIsOpen(false)}
@@ -29,10 +52,13 @@ const MobileSidebar = ({ setFilter }) => {
                 <div className="p-6 px-12 mt-12 flex flex-col justify-between text-left">
                     {/* Category Buttons */}
                     <div className="flex flex-col gap-4">
-                        {['All', 'Hot', 'Health', 'Pets', 'Men', 'Women'].map((category) => (
+                        {["All", "Hot", "Health", "Pets", "Men", "Women"].map((category) => (
                             <button
                                 key={category}
-                                onClick={() => { setFilter(category); setIsOpen(false); }}
+                                onClick={() => {
+                                    setFilter(category);
+                                    setIsOpen(false);
+                                }}
                                 className="hover:text-primary hover:underline text-left"
                             >
                                 {category}
@@ -40,18 +66,42 @@ const MobileSidebar = ({ setFilter }) => {
                         ))}
                     </div>
 
-
                     {/* navOther Buttons */}
-                    <div className="mt-4">
-                        {navOther.map((other) => (
-                            <button
-                                key={other.label}
-                                onClick={() => { setFilter(other.label); setIsOpen(false); }}
-                                className="block w-full text-center px-4 py-2 bg-primary text-white hover:bg-secondary hover:text-gray-200 mt-2"
+                    {navOther?.length > 0 && (
+                        <div className="mt-4">
+                            {navOther.map((other) => (
+                                <a
+                                    href={other.path}
+                                    key={other.label}
+                                    className="block w-full text-center px-4 py-2 bg-primary text-white hover:bg-secondary hover:text-gray-200 mt-2"
+                                    onClick={() => setIsOpen(false)} // Closes the sidebar on click
+                                >
+                                    {other.label}
+                                </a>
+                            ))}
+                        </div>
+                    )}
+                    <div className="flex flex-col mt-16 gap-4 text-gray-500 cursor-pointer">
+                        <hr />
+                        <Link to="/saved" onClick={handleProtectedRoute} className="flex flex-row gap-2 text-gray-500 hover:text-primary">
+                            <BsFillBookmarkFill className="transition size-6" />
+                            <span className="text-base">
+                                Saved
+                            </span>
+                        </Link>
+
+                        {user ? (
+                            <Link
+                                to={userCheck ? "/admin" : "/dashboard"}
+                                className="flex items-center gap-2 text-lg font-semibold text-gray-700 hover:text-primary hover:underline"
                             >
-                                {other.label}
-                            </button>
-                        ))}
+                                <span>{user.username}</span>
+                            </Link>
+                        ) : (
+                            <Link to="/login" className="flex items-center gap-1 text-gray-500 hover:text-primary transition">
+                                <BiUser />
+                            </Link>
+                        )}
                     </div>
                 </div>
             </div>
