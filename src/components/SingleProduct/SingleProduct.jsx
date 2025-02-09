@@ -4,6 +4,7 @@ import { getProdById } from "../../lib/getProdById";
 import { getProdByTags } from "../../lib/getProductByTags";
 import RelatedProducts from "./RelatedProducts";
 import { BsArrowLeft } from "react-icons/bs";
+import { useAuth } from "../../context/AuthContext";
 
 const SingleProduct = () => {
     const { id } = useParams();
@@ -12,6 +13,7 @@ const SingleProduct = () => {
     const [relatedProd, setRelatedProd] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
+    const { user } = useAuth()
 
     useEffect(() => {
         const fetchProdData = async () => {
@@ -39,6 +41,22 @@ const SingleProduct = () => {
     if (isLoading) return <h2 className="text-center text-lg">Loading...</h2>;
     if (error) return <h2 className="text-red-500 text-center">{error}</h2>;
 
+    // const handleSave = () => {
+    //     if (!user) {
+    //         navigate('/login');
+    //     } else {
+    //     }
+    // };
+
+    const handleBuyNow = () => {
+        if (!user) {
+            navigate('/login');
+        } else {
+            window.location.href = product.item_link;
+        }
+    };
+
+
     return (
         <div className="container mx-auto px-4 py-10 flex flex-col lg:flex-row gap-6">
             {/* Left Side - Product Details (Full width on small screens, 3/4 on large) */}
@@ -65,14 +83,19 @@ const SingleProduct = () => {
                         {/* Product Details */}
                         <h2 className="text-2xl sm:text-3xl font-bold text-gray-800">{product.item_name}</h2>
                         <p className="text-gray-600">{product.item_description}</p>
-                        <p className="text-xl sm:text-2xl font-bold text-blue-600">${product.item_price}</p>
 
                         {/* Action Buttons */}
                         <div className="mt-6 flex flex-col sm:flex-row gap-4">
-                            <button className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
-                                Add to Cart
+                            <button
+                                // onClick={handleSave}
+                                className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
+                            >
+                                Save
                             </button>
-                            <button className="bg-gray-300 px-6 py-3 rounded-lg hover:bg-gray-400 transition">
+                            <button
+                                onClick={handleBuyNow}
+                                className="bg-gray-300 px-6 py-3 rounded-lg hover:bg-gray-400 transition"
+                            >
                                 Buy Now
                             </button>
                         </div>

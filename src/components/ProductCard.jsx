@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { savePost, deleteSavedPost, getUserSavedProducts } from "../lib/createSaved";
 import { useAuth } from "../context/AuthContext"; // Get user from AuthContext
 
-const ProductCard = ({ id, img, title, desc, price, tags = [] }) => {
+const ProductCard = ({ id, img, title, desc}) => {
     const { user } = useAuth(); // Get authenticated user
     const userId = user?.$id;
 
@@ -89,12 +89,6 @@ const ProductCard = ({ id, img, title, desc, price, tags = [] }) => {
                 <div className="space-y-2 pt-4 text-center">
                     <h2 className="text-primary font-semibold uppercase">{title}</h2>
                     <p className="text-gray-500 text-sm max-w-[200px] mx-auto">{desc}</p>
-                    <div className="font-bold text-lg text-primary">${price}</div>
-                    <div className="text-gray-500 text-sm">
-                        {tags.map((tag, index) => (
-                            <span key={index} className="mr-2">#{tag.trim()}</span>
-                        ))}
-                    </div>
                 </div>
             </Link>
         </div>

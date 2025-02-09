@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import HeaderTop from "./components/HeaderTop";
 import HeaderMain from "./components/HeaderMain";
-import MobileSidebar from "./components/MobileNavbar";
 import Footer from "./components/Footer";
 
 const Layout = ({ children }) => {

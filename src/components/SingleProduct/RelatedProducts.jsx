@@ -18,7 +18,6 @@ const RelatedProducts = ({ relatedProd }) => {
                                 <h3 className="text-lg font-semibold text-gray-700 group-hover:text-blue-600 transition">
                                     {product.item_name}
                                 </h3>
-                                <p className="text-blue-600 font-bold">${product.item_price}</p>
                             </div>
                         </div>
                     </Link>

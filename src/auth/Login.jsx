@@ -60,21 +60,21 @@ const Login = () => {
                         Don’t have an account? <Link to="/signup" className="text-primary font-medium hover:underline">Signup now</Link>
                     </p>
 
-                    <div className="relative my-6">
+                    {/* <div className="relative my-6">
                         <div className="absolute inset-0 flex items-center">
                             <div className="w-full border-t border-gray-300"></div>
                         </div>
                         <div className="relative flex justify-center text-gray-500 text-sm">
                             <span className="bg-white px-2">OR</span>
                         </div>
-                    </div>
+                    </div> */}
 
-                    <div className="flex justify-center">
+                    {/* <div className="flex justify-center">
                         <Link to="/" className="flex items-center gap-2 border border-gray-300 px-4 py-2 rounded-md text-gray-700 hover:bg-gray-100 transition">
                             Login with
                             <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google Sign-In" className="w-6 h-6" />
                         </Link>
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <div className="hidden lg:flex flex-1 justify-center items-center">

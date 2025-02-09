@@ -1,14 +1,20 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable react-refresh/only-export-components */
+/* eslint-disable react/prop-types */
 import { createContext, useContext, useEffect, useState } from "react";
-import { account } from "../config/appwrite";
+import { account, ID } from "../config/appwrite";
 import { getUserProfile } from "../lib/getUser";
+import toast from "react-hot-toast";
 
 const AuthContext = createContext();
 
-// eslint-disable-next-line react/prop-types
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const navigateTo = (path) => {
+        if (typeof window !== "undefined") {
+            window.location.href = path;
+        }
+    };
 
     useEffect(() => {
         const checkUser = async () => {
@@ -19,6 +25,7 @@ export const AuthProvider = ({ children }) => {
                 const userProfile = await getUserProfile(session.$id);
                 setUser({ id: session.$id, email: session.email, ...userProfile });
             } catch (error) {
+                console.error("Error fetching session:", error.message);
                 setUser(null);
             } finally {
                 setLoading(false);
@@ -26,6 +33,18 @@ export const AuthProvider = ({ children }) => {
         };
         checkUser();
     }, []);
+
+    const signup = async (email, password, name) => {
+        try {
+            const newUser = await account.create(ID.unique(), email, password, name);
+            await account.createVerification(newUser.$id, `${window.location.origin}/verify-email`);
+            toast.success("Signup successful! Please verify your email.");
+        } catch (error) {
+            console.error("Signup failed:", error.message);
+            toast.error("Signup failed. Please try again.");
+            throw error;
+        }
+    };
 
     const login = async (email, password) => {
         try {
@@ -38,22 +57,23 @@ export const AuthProvider = ({ children }) => {
 
             const params = new URLSearchParams(window.location.search);
             const redirectPath = params.get("redirect") || "/";
-            window.location.href = redirectPath;
+            navigateTo(redirectPath); // Use the fallback function
         } catch (error) {
-            console.error("Login failed:", error);
+            console.error("Login failed:", error.message);
+            toast.error("Login failed. Please check your credentials.");
             throw error;
         }
     };
 
-    const signup = async (email, password, name) => {
-        await account.create("unique()", email, password, name);
-        await login(email, password);
-    };
-
     const logout = async () => {
-        await account.deleteSession("current");
-        setUser(null);
-        window.location.href = "/login";
+        try {
+            await account.deleteSession("current");
+            setUser(null);
+            navigateTo("/login"); // Use the fallback function
+        } catch (error) {
+            console.error("Logout failed:", error.message);
+            toast.error("Logout failed. Please try again.");
+        }
     };
 
     return (
@@ -63,5 +83,4 @@ export const AuthProvider = ({ children }) => {
     );
 };
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => useContext(AuthContext);
