@@ -1,5 +1,5 @@
 import logo from "../assets/icon.png";
-import { BsFillBookmarkFill, BsSearch } from "react-icons/bs";
+import { BsSearch } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
@@ -33,9 +33,9 @@ const HeaderMain = () => {
                     <BsSearch className="absolute right-0 top-0 mr-3 mt-3 text-gray-400" size={20} />
                 </div>
 
-                <div className="hidden lg:flex gap-4 text-gray-500 text-[30px] cursor-pointer">
-                    <Link to="/saved" onClick={handleProtectedRoute}>
-                        <BsFillBookmarkFill className="text-gray-500 hover:text-primary transition size-6" />
+                <div className="hidden lg:flex gap-4 cursor-pointer">
+                    <Link to="/saved" onClick={handleProtectedRoute} className="text-black hover:text-primary hover:underline font-bold items-center justify-center flex text-lg">
+                        Saved
                     </Link>
 
                     {user ? (

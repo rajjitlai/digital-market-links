@@ -3,15 +3,15 @@ import { useState, useEffect } from "react";
 import { BsBookmark, BsBookmarkFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { savePost, deleteSavedPost, getUserSavedProducts } from "../lib/createSaved";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/AuthContext"; // Get user from AuthContext
 
 const ProductCard = ({ id, img, title, desc, price, tags = [] }) => {
-    const { user } = useAuth(); // Get user from auth context
-    const userId = user?.$id; // Ensure we get a valid userId
+    const { user } = useAuth(); // Get authenticated user
+    const userId = user?.$id;
 
     const [isSaved, setIsSaved] = useState(false);
     const [savedRecordId, setSavedRecordId] = useState(null);
-    const [loading, setLoading] = useState(true); // Prevent incorrect UI flickering
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchSavedStatus = async () => {
@@ -21,13 +21,18 @@ const ProductCard = ({ id, img, title, desc, price, tags = [] }) => {
             }
 
             try {
+                console.log("Fetching saved products for user:", userId);
                 const savedProducts = await getUserSavedProducts(userId);
-                const savedItem = savedProducts.find(record => record.post === id);
+                console.log("Saved products:", savedProducts);
+
+                const savedItem = savedProducts.find(record => record.product?.$id === id);
 
                 if (savedItem) {
+                    console.log("Product is saved:", id);
                     setIsSaved(true);
                     setSavedRecordId(savedItem.$id);
                 } else {
+                    console.log("Product is not saved:", id);
                     setIsSaved(false);
                     setSavedRecordId(null);
                 }
@@ -44,12 +49,19 @@ const ProductCard = ({ id, img, title, desc, price, tags = [] }) => {
     const handleSavePost = async (e) => {
         e.stopPropagation();
 
+        if (!userId) {
+            console.log("User not logged in");
+            return;
+        }
+
         try {
             if (isSaved && savedRecordId) {
+                console.log("Deleting saved post:", savedRecordId);
                 await deleteSavedPost(savedRecordId);
                 setIsSaved(false);
                 setSavedRecordId(null);
             } else {
+                console.log("Saving post:", id);
                 const savedPost = await savePost(id, userId);
                 if (savedPost) {
                     setIsSaved(true);
@@ -63,7 +75,6 @@ const ProductCard = ({ id, img, title, desc, price, tags = [] }) => {
 
     return (
         <div className="border border-gray-200 rounded-lg max-w-[300px] shadow-md hover:shadow-lg transition-all p-4 relative">
-            {/* Show save button only if user is logged in */}
             {userId && !loading && (
                 <button
                     className="absolute top-3 right-3 text-2xl text-gray-600 hover:text-primary transition z-50"

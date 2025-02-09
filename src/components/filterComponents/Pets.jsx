@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import ProductCard from "../ProductCard";
-import { Link } from "react-router-dom";
 import { getProd } from "../../lib/getProd";
 
 const Pets = () => {
@@ -54,7 +53,7 @@ const Pets = () => {
         <div className="grid grid-cols-1 place-items-center sm:place-items-start sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 xl:gap-x-20 xl:gap-y-10">
           {petProducts.length > 0 ? (
             petProducts.map((product) => (
-              <>
+              <div key={product.$id}>
                 <ProductCard
                   id={product.$id}
                   img={product.item_image}
@@ -63,7 +62,7 @@ const Pets = () => {
                   price={product.item_price}
                   tags={product.tags}
                 />
-              </>
+              </div>
             ))
           ) : (
             <p className="text-gray-500 text-center col-span-full">
