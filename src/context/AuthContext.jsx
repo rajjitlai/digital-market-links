@@ -1,20 +1,18 @@
-/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useState } from "react";
-import { account, ID } from "../config/appwrite";
-import { getUserProfile } from "../lib/getUser";
+import { account, database, ID } from "../config/appwrite";
 import toast from "react-hot-toast";
+import { getUserProfile } from "../lib/getUser";
 
 const AuthContext = createContext();
+
+const databaseId = import.meta.env.VITE_APP_DB
+const userCollectionId = import.meta.env.VITE_APP_USERS_COLLECTION
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    const navigateTo = (path) => {
-        if (typeof window !== "undefined") {
-            window.location.href = path;
-        }
-    };
 
     useEffect(() => {
         const checkUser = async () => {
@@ -34,53 +32,64 @@ export const AuthProvider = ({ children }) => {
         checkUser();
     }, []);
 
-    const signup = async (email, password, name) => {
+    const registerUser = async (userInfo) => {
         try {
-            const newUser = await account.create(ID.unique(), email, password, name);
-            await account.createVerification(newUser.$id, `${window.location.origin}/verify-email`);
-            toast.success("Signup successful! Please verify your email.");
+            const userId = ID.unique();
+            await account.create(userId, userInfo.email, userInfo.password, userInfo.username);
+            await account.createEmailPasswordSession(userInfo.email, userInfo.password);
+
+            await database.createDocument(databaseId, userCollectionId, userId, {
+                username: userInfo.username,
+                email: userInfo.email,
+                save: []
+            });
+
+            await account.createVerification(`${window.location.origin}/verify-email`);
+            toast.success("User registered successfully! Please check your email to verify your account.");
+            setUser(await account.get());
         } catch (error) {
-            console.error("Signup failed:", error.message);
-            toast.error("Signup failed. Please try again.");
-            throw error;
+            toast.error(error.message || "Error registering user.");
+            console.error(error);
         }
     };
 
-    const login = async (email, password) => {
+    const loginUser = async (email, password) => {
         try {
-            await account.createEmailPasswordSession(email, password);
-            const session = await account.get();
-            if (!session?.$id) throw new Error("User session ID is missing after login");
+            const session = await account.createEmailPasswordSession(email, password);
+            console.log("Logged in:", session);
 
-            const userProfile = await getUserProfile(session.$id);
-            setUser({ id: session.$id, email: session.email, ...userProfile });
-
-            const params = new URLSearchParams(window.location.search);
-            const redirectPath = params.get("redirect") || "/";
-            navigateTo(redirectPath); // Use the fallback function
+            const userDetails = await account.get();
+            if (userDetails.emailVerification) {
+                toast.success("Login successful!");
+                setUser(userDetails);
+            } else {
+                toast.error("Please verify your email to continue.");
+                await account.deleteSession("current");
+            }
         } catch (error) {
-            console.error("Login failed:", error.message);
-            toast.error("Login failed. Please check your credentials.");
-            throw error;
+            toast.error(`Login failed: ${error.message}`);
+            console.error(error);
         }
     };
 
-    const logout = async () => {
+    const logoutUser = async () => {
         try {
             await account.deleteSession("current");
             setUser(null);
-            navigateTo("/login"); // Use the fallback function
+            toast.success("Successfully logged out!");
         } catch (error) {
-            console.error("Logout failed:", error.message);
-            toast.error("Logout failed. Please try again.");
+            toast.error("Error logging out: " + error.message);
+            console.error(error);
         }
     };
 
     return (
-        <AuthContext.Provider value={{ user, loading, login, signup, logout }}>
+        <AuthContext.Provider value={{ user, loading, registerUser, loginUser, logoutUser }}>
             {children}
         </AuthContext.Provider>
     );
 };
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => {
+    return useContext(AuthContext);
+};

@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import { useAuth } from "./context/AuthContext";
 import Home from "./pages/Home";
 import Login from "./auth/Login";
-import Signup from "./auth/SignUp";
+import Signup from "./auth/Signup";
 import Dashboard from "./pages/personal/Dashboard";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import Saved from "./pages/personal/Saved";
@@ -22,21 +22,29 @@ const PrivateRoute = ({ children }) => {
   }, [loading, user]);
 
   if (loading) return <div className="text-center flex items-center justify-center w-full h-screen">Loading...</div>;
-  return user ? children : <Navigate to={`/login?redirect=${redirectPath || "/"}`} />;
+
+  return user ? children : <Navigate to={`/login?redirect=${redirectPath || "/"}`} replace />;
+};
+
+const AdminRoute = ({ children }) => {
+  const { user, loading } = useAuth();
+
+  if (loading) return <div className="text-center flex items-center justify-center w-full h-screen">Loading...</div>;
+
+  return user?.labels?.includes("admin") ? children : <Navigate to="/dashboard" replace />;
 };
 
 const App = () => {
-  const { user } = useAuth(); // ✅ Get user authentication state
+  const { user } = useAuth();
 
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
+      
+        <Route path="/login" element={user ? <Navigate to="/dashboard" replace /> : <Login />} />
+        <Route path="/signup" element={user ? <Navigate to="/dashboard" replace /> : <Signup />} />
 
-        {/* ✅ Prevent logged-in users from accessing login */}
-        <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <Login />} />
-
-        <Route path="/signup" element={<Signup />} />
         <Route path="/product/:id" element={
           <Layout>
             <SingleProduct />
@@ -60,14 +68,14 @@ const App = () => {
         } />
 
         <Route path="/admin" element={
-          <PrivateRoute>
+          <AdminRoute>
             <Layout>
               <AdminDashboard />
             </Layout>
-          </PrivateRoute>
+          </AdminRoute>
         } />
 
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
   );

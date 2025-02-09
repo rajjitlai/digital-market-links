@@ -2,23 +2,21 @@ import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import banner from "../assets/logo.png";
-import toast from "react-hot-toast";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const { signup } = useAuth();
+  const { registerUser } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await signup(email, password, name);
-      toast.success("Signup successful! Please verify your email.");
-      navigate("/verify-email");
+      await registerUser({ email, password, username: name });
+      navigate("/dashboard");
     } catch (error) {
-      toast.error(error.message || "Signup failed.");
+      console.error("Signup failed", error);
     }
   };
 
