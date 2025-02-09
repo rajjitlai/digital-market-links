@@ -7,30 +7,18 @@ import { Link } from "react-router-dom";
 
 const ProductCard = ({ id, img, title, desc, price, tags = [] }) => {
     const { user } = useAuth();
-    const [bookmarked, setBookmarked] = useState(false);
     const [savedProductId, setSavedProductId] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (!user) return;
 
-        const fetchSavedProducts = async () => {
-            setLoading(true);
+        const fetchSavedStatus = async () => {
             try {
                 const savedProducts = await getUserSavedProducts(user.$id);
 
-                const savedItem = savedProducts.find((product) =>
-                    product.product_id === id ||
-                    (Array.isArray(product.product_id) && product.product_id.includes(id))
-                );
-
-                if (savedItem) {
-                    setBookmarked(true);
-                    setSavedProductId(savedItem.$id);
-                } else {
-                    setBookmarked(false);
-                    setSavedProductId(null);
-                }
+                const savedItem = savedProducts.find((product) => product.product === id);
+                setSavedProductId(savedItem ? savedItem.$id : null);
             } catch (error) {
                 console.error("Error fetching saved products:", error);
             } finally {
@@ -38,40 +26,23 @@ const ProductCard = ({ id, img, title, desc, price, tags = [] }) => {
             }
         };
 
-        fetchSavedProducts();
+        fetchSavedStatus();
     }, [user, id]);
 
     const handleBookmark = async (e) => {
         e.stopPropagation();
-
         if (!user) {
             console.error("User not authenticated. Cannot save product.");
             return;
         }
 
         try {
-            if (bookmarked && savedProductId) {
-                // Remove saved product
+            if (savedProductId) {
                 await deleteSaved(savedProductId);
-                setBookmarked(false);
                 setSavedProductId(null);
                 console.log("Product removed from saved list!");
             } else {
-                // Check again if the product is already saved before saving
-                const savedProducts = await getUserSavedProducts(user.$id);
-                const existingItem = savedProducts.find(
-                    (product) => product.product_id === id ||
-                        (Array.isArray(product.product_id) && product.product_id.includes(id))
-                );
-
-                if (existingItem) {
-                    console.log("Product is already saved. Skipping duplicate save.");
-                    return;
-                }
-
-                // Save the product if it's not already saved
                 const savedItem = await createSaved(user.$id, id);
-                setBookmarked(true);
                 setSavedProductId(savedItem.$id);
                 console.log("Product saved successfully!");
             }
@@ -80,7 +51,6 @@ const ProductCard = ({ id, img, title, desc, price, tags = [] }) => {
         }
     };
 
-
     return (
         <div className="border border-gray-200 rounded-lg max-w-[300px] shadow-md hover:shadow-lg transition-all p-4 relative">
             {!loading && user && (
@@ -88,7 +58,7 @@ const ProductCard = ({ id, img, title, desc, price, tags = [] }) => {
                     className="absolute top-3 right-3 text-2xl text-gray-600 hover:text-primary transition"
                     onClick={handleBookmark}
                 >
-                    {bookmarked ? <BsBookmarkFill className="text-blue-500" /> : <BsBookmark />}
+                    {savedProductId ? <BsBookmarkFill className="text-blue-500" /> : <BsBookmark />}
                 </button>
             )}
 
