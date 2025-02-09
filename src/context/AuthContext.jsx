@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }) => {
 
             const params = new URLSearchParams(window.location.search);
             const redirectPath = params.get("redirect") || "/";
-            window.location.href = redirectPath; 
+            window.location.href = redirectPath;
         } catch (error) {
             console.error("Login failed:", error);
             throw error;

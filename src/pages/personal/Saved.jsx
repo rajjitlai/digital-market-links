@@ -47,6 +47,7 @@ const Saved = () => {
     return (
         <div className="max-w-6xl mx-auto p-6 bg-white text-gray-800 rounded-lg shadow-lg">
             <h2 className="text-3xl font-bold text-center mb-8 text-black">Saved Products</h2>
+
             {loading ? (
                 <p className="text-center text-gray-500">Loading saved products...</p>
             ) : saved.length === 0 ? (
@@ -91,6 +92,16 @@ const Saved = () => {
                     })}
                 </div>
             )}
+
+            {/* Back Button */}
+            <div className="mt-6 flex justify-center">
+                <button
+                    onClick={() => window.history.back()}
+                    className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded-md"
+                >
+                    Back
+                </button>
+            </div>
         </div>
     );
 };

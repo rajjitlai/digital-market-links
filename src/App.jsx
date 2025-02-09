@@ -26,11 +26,16 @@ const PrivateRoute = ({ children }) => {
 };
 
 const App = () => {
+  const { user } = useAuth(); // ✅ Get user authentication state
+
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+
+        {/* ✅ Prevent logged-in users from accessing login */}
+        <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <Login />} />
+
         <Route path="/signup" element={<Signup />} />
         <Route path="/product/:id" element={
           <Layout>
