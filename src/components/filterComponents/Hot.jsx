@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import ProductCard from "../ProductCard";
-import { Link } from "react-router-dom";
 import { getProd } from "../../lib/getProd";
 
 const Hot = () => {
@@ -51,18 +50,19 @@ const Hot = () => {
             ) : error ? (
                 <p className="text-red-500 text-center">Error: {error}</p>
             ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 lg:gap-12 xl:gap-16">
+                <div className="grid grid-cols-1 place-items-center sm:place-items-start sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 xl:gap-x-20 xl:gap-y-10">
                     {hotProducts.length > 0 ? (
                         hotProducts.map((product) => (
-                            <Link to={`/product/${product.$id}`} key={product.$id} className="w-full">
+                            <>
                                 <ProductCard
+                                    id={product.$id}
                                     img={product.item_image}
                                     title={product.item_name}
                                     desc={truncateDescription(product.item_description)}
                                     price={product.item_price}
                                     tags={product.tags}
                                 />
-                            </Link>
+                            </>
                         ))
                     ) : (
                         <p className="text-gray-500 text-center col-span-full">

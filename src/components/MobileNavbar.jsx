@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { IoMenuOutline } from "react-icons/io5";
 import { AiOutlineClose } from "react-icons/ai";
 import { navOther } from "../constants";
-import { BsFillBookmarkFill } from "react-icons/bs";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { BiUser } from "react-icons/bi";
@@ -84,7 +83,6 @@ const MobileSidebar = ({ setFilter }) => {
                     <div className="flex flex-col mt-16 gap-4 text-gray-500 cursor-pointer">
                         <hr />
                         <Link to="/saved" onClick={handleProtectedRoute} className="flex flex-row gap-2 text-gray-500 hover:text-primary">
-                            <BsFillBookmarkFill className="transition size-6" />
                             <span className="text-base">
                                 Saved
                             </span>

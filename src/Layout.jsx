@@ -9,7 +9,6 @@ const Layout = ({ children }) => {
         <div className="flex flex-col min-h-screen">
             <HeaderTop />
             <HeaderMain />
-            <MobileSidebar />
             <main className="flex-1 container mx-auto px-4 md:px-16 py-6">
                 {children}
             </main>

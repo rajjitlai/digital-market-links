@@ -11,21 +11,30 @@ const ProductCard = ({ id, img, title, desc, price, tags = [] }) => {
 
     const [isSaved, setIsSaved] = useState(false);
     const [savedRecordId, setSavedRecordId] = useState(null);
+    const [loading, setLoading] = useState(true); // Prevent incorrect UI flickering
 
     useEffect(() => {
         const fetchSavedStatus = async () => {
-            if (!userId) return; // Don't run if user isn't logged in
+            if (!userId) {
+                setLoading(false);
+                return;
+            }
 
             try {
                 const savedProducts = await getUserSavedProducts(userId);
-                const savedItem = savedProducts.find(record => record.product === id);
+                const savedItem = savedProducts.find(record => record.post === id);
 
                 if (savedItem) {
                     setIsSaved(true);
                     setSavedRecordId(savedItem.$id);
+                } else {
+                    setIsSaved(false);
+                    setSavedRecordId(null);
                 }
             } catch (error) {
                 console.error("Error fetching saved status:", error);
+            } finally {
+                setLoading(false);
             }
         };
 
@@ -55,7 +64,7 @@ const ProductCard = ({ id, img, title, desc, price, tags = [] }) => {
     return (
         <div className="border border-gray-200 rounded-lg max-w-[300px] shadow-md hover:shadow-lg transition-all p-4 relative">
             {/* Show save button only if user is logged in */}
-            {userId && (
+            {userId && !loading && (
                 <button
                     className="absolute top-3 right-3 text-2xl text-gray-600 hover:text-primary transition z-50"
                     onClick={handleSavePost}
