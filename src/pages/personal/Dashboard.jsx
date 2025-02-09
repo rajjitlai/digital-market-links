@@ -3,7 +3,7 @@ import { useAuth } from "../../context/AuthContext";
 import { getUserProfile } from "../../lib/getUser";
 import { BiUser } from "react-icons/bi";
 import { Link } from "react-router-dom";
-import ProductCard from "../../components/ProductCard";
+import Saved from "./Saved";
 
 const Dashboard = () => {
   const { user, logout } = useAuth();
@@ -20,56 +20,51 @@ const Dashboard = () => {
     }
   }, [user]);
 
-
   const handleLogout = () => {
     logout();
   };
 
-  if (!userData) return <p>Loading profile...</p>;
+  if (!userData) return <p className="text-center text-gray-600 mt-10">Loading profile...</p>;
 
   return (
-    <div className="min-h-screen bg-gray-100 flex justify-center items-center p-6">
-      <div className="bg-white shadow-md rounded-lg p-8 max-w-2xl w-full">
-        <div className="flex flex-col items-center">
+    <div className="min-h-screen flex flex-col items-center py-10 px-4">
+      {/* Profile Section */}
+      <div className="flex flex-col items-center mb-8">
+        <div className="w-24 h-24 relative">
           {userData?.image ? (
             <img
               src={userData.image}
               alt="User Avatar"
-              className="w-24 h-24 rounded-full object-cover border border-gray-300"
+              className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-lg"
             />
           ) : (
-            <BiUser className="w-24 h-24 text-gray-400" />
+            <BiUser className="w-24 h-24 text-gray-600 border-4 border-gray-300 rounded-full p-2" />
           )}
-
-          <h2 className="text-2xl font-semibold mt-4">{userData?.username || "User Name"}</h2>
-
-          <Link to="/edit-profile">
-            <button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
-              Edit Profile
-            </button>
-          </Link>
         </div>
 
-        <div className="mt-6">
-          <h3 className="text-xl font-semibold mb-4">Saved Products</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {userData?.saved?.length > 0 ? (
-              userData.saved.map((product) => (
-                <ProductCard key={product.id} {...product} />
-              ))
-            ) : (
-              <p className="text-gray-500 col-span-3 text-center">No saved products found</p>
-            )}
-          </div>
-        </div>
+        <h2 className="text-3xl font-semibold mt-4 text-black">
+          {userData?.username || "User Name"}
+        </h2>
 
-        <button
-          onClick={handleLogout}
-          className="w-[max-content] mt-6 py-3 px-4 bg-red-500 text-white rounded-lg hover:bg-red-600"
-        >
-          Logout
-        </button>
+        <Link to="/edit-profile">
+          <button className="mt-2 px-6 py-2 bg-white text-blue-600 font-semibold rounded-md hover:bg-gray-100 transition shadow-md">
+            Edit Profile
+          </button>
+        </Link>
       </div>
+
+      {/* Saved Products Section */}
+      <div className="w-full max-w-5xl px-4">
+        <Saved />
+      </div>
+
+      {/* Logout Button */}
+      <button
+        onClick={handleLogout}
+        className="mt-8 py-3 px-6 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700 transition shadow-lg"
+      >
+        Logout
+      </button>
     </div>
   );
 };

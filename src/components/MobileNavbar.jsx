@@ -5,7 +5,6 @@ import { AiOutlineClose } from "react-icons/ai";
 import { navOther } from "../constants";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { BiUser } from "react-icons/bi";
 
 const MobileSidebar = ({ setFilter }) => {
     const { user } = useAuth();
@@ -83,7 +82,7 @@ const MobileSidebar = ({ setFilter }) => {
                     <div className="flex flex-col mt-16 gap-4 text-gray-500 cursor-pointer">
                         <hr />
                         <Link to="/saved" onClick={handleProtectedRoute} className="flex flex-row gap-2 text-gray-500 hover:text-primary">
-                            <span className="text-base">
+                            <span className="text-base font-bold">
                                 Saved
                             </span>
                         </Link>
@@ -97,7 +96,9 @@ const MobileSidebar = ({ setFilter }) => {
                             </Link>
                         ) : (
                             <Link to="/login" className="flex items-center gap-1 text-gray-500 hover:text-primary transition">
-                                <BiUser />
+                                <span className="text-base font-bold">
+                                    Login
+                                </span>
                             </Link>
                         )}
                     </div>

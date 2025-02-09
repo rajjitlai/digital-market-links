@@ -1,6 +1,5 @@
 import logo from "../assets/icon.png";
 import { BsSearch } from "react-icons/bs";
-import { BiUser } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
@@ -46,8 +45,8 @@ const HeaderMain = () => {
                             <span>{user.username}</span>
                         </Link>
                     ) : (
-                        <Link to="/login" className="flex items-center gap-1 text-gray-500 hover:text-primary transition">
-                            <BiUser />
+                        <Link to="/login" className="flex items-center gap-1 text-black hover:text-primary hover:underline font-bold text-lg">
+                            Login
                         </Link>
                     )}
                 </div>
