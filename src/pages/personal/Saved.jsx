@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
-import { deleteSaved, getUserSavedProducts } from "../../lib/createSaved";
+import { deleteSavedPost, getUserSavedProducts } from "../../lib/createSaved";
 
 const Saved = () => {
     const { user, loading: authLoading } = useAuth();
@@ -29,7 +29,7 @@ const Saved = () => {
 
     const deleteSave = async (id) => {
         try {
-            await deleteSaved(id);
+            await deleteSavedPost(id);
             setSaved(saved.filter((item) => item.$id !== id));
         } catch (error) {
             console.error("Error deleting saved product:", error);
