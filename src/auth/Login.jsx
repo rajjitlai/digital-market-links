@@ -6,13 +6,13 @@ import banner from "../assets/logo.png";
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { login } = useAuth();
+    const { loginUser } = useAuth();
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await login(email, password);
+            await loginUser(email, password);
             navigate("/dashboard");
         } catch (error) {
             console.error("Login failed", error);

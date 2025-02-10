@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Saved from "./Saved";
 
 const Dashboard = () => {
-  const { user, logout } = useAuth();
+  const { user, logoutUser } = useAuth();
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const Dashboard = () => {
   }, [user]);
 
   const handleLogout = () => {
-    logout();
+    logoutUser();
   };
 
   if (!userData) return <p className="text-center text-gray-600 mt-10">Loading profile...</p>;

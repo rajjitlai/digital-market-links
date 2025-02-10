@@ -47,6 +47,7 @@ export const AuthProvider = ({ children }) => {
             await account.createVerification(`${window.location.origin}/verify-email`);
             toast.success("User registered successfully! Please check your email to verify your account.");
             setUser(await account.get());
+            window.location.reload();
         } catch (error) {
             toast.error(error.message || "Error registering user.");
             console.error(error);
@@ -62,6 +63,7 @@ export const AuthProvider = ({ children }) => {
             if (userDetails.emailVerification) {
                 toast.success("Login successful!");
                 setUser(userDetails);
+                window.location.reload();
             } else {
                 toast.error("Please verify your email to continue.");
                 await account.deleteSession("current");

@@ -13,13 +13,14 @@ const Hero = () => {
         autoplay: true,
         autoplaySpeed: 5000,
         pauseOnHover: false,
+        arrows: false,
         responsive: [
             {
                 breakpoint: 768,
                 settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1,
-                    arrows: true,
+                    arrows: false,
                     dots: false
                 }
             }
