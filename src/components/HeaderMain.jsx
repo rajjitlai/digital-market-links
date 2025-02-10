@@ -2,6 +2,7 @@ import logo from "../assets/icon.png";
 import { BsSearch } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import toast from "react-hot-toast";
 
 const HeaderMain = () => {
     const { user } = useAuth();
@@ -12,6 +13,7 @@ const HeaderMain = () => {
     const handleProtectedRoute = (e) => {
         if (!user) {
             e.preventDefault();
+            toast.error("Please login to save your favorite product.")
             navigate("/login");
         }
     };

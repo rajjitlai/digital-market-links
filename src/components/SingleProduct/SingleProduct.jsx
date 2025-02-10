@@ -5,6 +5,7 @@ import { getProdByTags } from "../../lib/getProductByTags";
 import RelatedProducts from "./RelatedProducts";
 import { BsArrowLeft } from "react-icons/bs";
 import { useAuth } from "../../context/AuthContext";
+import toast from "react-hot-toast";
 
 const SingleProduct = () => {
     const { id } = useParams();
@@ -41,15 +42,9 @@ const SingleProduct = () => {
     if (isLoading) return <h2 className="text-center text-lg">Loading...</h2>;
     if (error) return <h2 className="text-red-500 text-center">{error}</h2>;
 
-    // const handleSave = () => {
-    //     if (!user) {
-    //         navigate('/login');
-    //     } else {
-    //     }
-    // };
-
     const handleBuyNow = () => {
         if (!user) {
+            toast.error("Please login first");
             navigate('/login');
         } else {
             window.location.href = product.item_link;
@@ -86,12 +81,6 @@ const SingleProduct = () => {
 
                         {/* Action Buttons */}
                         <div className="mt-6 flex flex-col sm:flex-row gap-4">
-                            <button
-                                // onClick={handleSave}
-                                className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
-                            >
-                                Save
-                            </button>
                             <button
                                 onClick={handleBuyNow}
                                 className="bg-gray-300 px-6 py-3 rounded-lg hover:bg-gray-400 transition"
