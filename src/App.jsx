@@ -11,6 +11,7 @@ import SingleProduct from "./components/SingleProduct/SingleProduct";
 import Layout from "./Layout";
 import { useEffect, useState } from "react";
 import VerifyEmail from "./auth/VerifyEmail";
+import VerifyPrompt from "./auth/VerifyPrompt";
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();
@@ -53,6 +54,7 @@ const App = () => {
         } />
 
         <Route path="/verify-email" element={<VerifyEmail />} />
+        <Route path="/verify-prompt" element={<VerifyPrompt />} />
 
         <Route path="/dashboard" element={
           <PrivateRoute>

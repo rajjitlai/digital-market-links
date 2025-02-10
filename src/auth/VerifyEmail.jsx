@@ -23,7 +23,7 @@ const VerifyEmail = () => {
         }
     }, [searchParams, navigate]);
 
-    return <div>Verifying your email...</div>;
+    return <div className="flex w-full h-screen items-center justify-center text-center">Verifying your email...</div>;
 };
 
 export default VerifyEmail;

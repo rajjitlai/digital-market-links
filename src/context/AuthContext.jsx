@@ -46,8 +46,8 @@ export const AuthProvider = ({ children }) => {
 
             await account.createVerification(`${window.location.origin}/verify-email`);
             toast.success("User registered successfully! Please check your email to verify your account.");
-            setUser(await account.get());
-            window.location.reload();
+            await account.deleteSession("current");
+            window.location.href = "/verify-prompt";
         } catch (error) {
             toast.error(error.message || "Error registering user.");
             console.error(error);
@@ -56,8 +56,7 @@ export const AuthProvider = ({ children }) => {
 
     const loginUser = async (email, password) => {
         try {
-            const session = await account.createEmailPasswordSession(email, password);
-            console.log("Logged in:", session);
+            await account.createEmailPasswordSession(email, password);
 
             const userDetails = await account.get();
             if (userDetails.emailVerification) {
