@@ -61,18 +61,8 @@ const Contact = () => {
                     </p>
 
                     <div className="flex items-center gap-4 mb-4">
-                        <FaPhone className="text-primary text-2xl" />
-                        <span className="text-lg">+1 234 567 890</span>
-                    </div>
-
-                    <div className="flex items-center gap-4 mb-4">
                         <FaEnvelope className="text-primary text-2xl" />
-                        <span className="text-lg">contact@example.com</span>
-                    </div>
-
-                    <div className="flex items-center gap-4">
-                        <FaMapMarkerAlt className="text-primary text-2xl" />
-                        <span className="text-lg">123 Street, City, Country</span>
+                        <span className="text-lg">treatpathglobal@gmail.com</span>
                     </div>
                 </div>
 

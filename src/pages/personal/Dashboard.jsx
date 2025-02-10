@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { getUserProfile } from "../../lib/getUser";
 import { BiUser } from "react-icons/bi";
-import { Link } from "react-router-dom";
 import Saved from "./Saved";
+import toast from "react-hot-toast";
 
 const Dashboard = () => {
   const { user, logoutUser } = useAuth();
@@ -23,6 +23,10 @@ const Dashboard = () => {
   const handleLogout = () => {
     logoutUser();
   };
+
+  const editClick = () => {
+    toast.success("Edit options will be available soon");
+  }
 
   if (!userData) return <p className="text-center text-gray-600 mt-10">Loading profile...</p>;
 
@@ -45,12 +49,9 @@ const Dashboard = () => {
         <h2 className="text-3xl font-semibold mt-4 text-black">
           {userData?.username || "User Name"}
         </h2>
-
-        <Link to="/edit-profile">
-          <button className="mt-2 px-6 py-2 bg-white text-blue-600 font-semibold rounded-md hover:bg-gray-100 transition shadow-md">
-            Edit Profile
-          </button>
-        </Link>
+        <button onClick={editClick} className="mt-2 px-6 py-2 bg-white text-blue-600 font-semibold rounded-md hover:bg-gray-100 transition shadow-md">
+          Edit Profile
+        </button>
       </div>
 
       {/* Saved Products Section */}
