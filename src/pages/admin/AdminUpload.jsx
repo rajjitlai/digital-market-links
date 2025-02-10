@@ -3,6 +3,7 @@ import { useState } from "react";
 import { addProduct } from "../../lib/uploadProducts";
 import { uploadImage } from "../../lib/uploadImage";
 import { useNavigate } from "react-router-dom";
+import EditProd from "./EditProd";
 
 const AdminUpload = () => {
     const navigate = useNavigate();
@@ -87,7 +88,7 @@ const AdminUpload = () => {
             <h2 className="text-2xl font-bold mb-6 text-center">Admin Dashboard</h2>
 
             {/* Dashboard Navigation */}
-            <div className="flex justify-between mb-6">
+            <div className="flex justify-between mb-6 flex-col gap-3 md:flex-row">
                 <button
                     onClick={() => setActiveTab("upload")}
                     className={`px-4 py-2 font-semibold rounded ${activeTab === "upload" ? "bg-blue-500 text-white" : "bg-gray-300"}`}
@@ -186,8 +187,8 @@ const AdminUpload = () => {
             ) : (
                 // Other Admin Option Section
                 <div className="p-6 bg-gray-100 rounded-lg">
-                    <h3 className="text-lg font-semibold mb-4">Other Admin Feature</h3>
-                    <p>Here you can add another feature for admin, such as user management, analytics, etc.</p>
+                    <h3 className="text-lg font-semibold mb-4">Edit or Delete Product</h3>
+                    <EditProd />
                 </div>
             )}
 
