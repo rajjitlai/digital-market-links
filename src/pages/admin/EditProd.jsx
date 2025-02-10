@@ -71,11 +71,13 @@ const EditProd = () => {
                 </tbody>
             </table>
 
-            {/* Popup for Editing Product */}
             {selectedProductId && (
                 <EditProdById
                     productId={selectedProductId}
-                    onClose={() => setSelectedProductId(null)}
+                    onClose={() => {
+                        setSelectedProductId(null);
+                        fetchProducts(); 
+                    }}
                 />
             )}
         </div>
