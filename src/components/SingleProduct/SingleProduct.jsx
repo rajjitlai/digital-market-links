@@ -25,7 +25,8 @@ const SingleProduct = () => {
                 setProduct(prodData);
 
                 if (prodData?.tags?.length > 0) {
-                    const relatedProds = await getProdByTags(prodData.tags);
+                    let relatedProds = await getProdByTags(prodData.tags);
+                    relatedProds = relatedProds.filter((prod) => prod.$id !== id);
                     setRelatedProd(relatedProds);
                 }
             } catch (err) {
